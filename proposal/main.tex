@@ -75,17 +75,16 @@ We are curious about how reliable FDIC has been and will be in the future.
 
 We plan to visualize the spatio-temporal FDIC bank failures as well as the
 distribution of acquiring banks. 1) The primary goal is to get an idea about
-how useful and reliable FDIC has been in the past. 2) If we have data about
-the amount of assets the failed banks have, we might also want to tell how
-likely will FDIC fail if a lot of bank or a large bank fails. 3) We want to
-use d3 and svg to create the visualization. We also want to use brushing and
-linking to allow exploring the details of the data.
+how useful and reliable FDIC has been in the past. 2) We might also want to
+know how likely will FDIC fail if a lot of bank or a large bank fails based on
+the peak period of failure in history. 3) We want to use d3 and svg to create
+the visualization. We also want to use brushing and linking to allow exploring
+the details of the data.
 
 \paragraph{Data.}
 
-We downloaded the FDIC failed bank list since October 1, 2000 from
-\url{https://catalog.data.gov/dataset/fdic-failed-bank-list}. It is a csv file
-and contains the names, the city, the state 
-
+We downloaded a detailed list of FDIC failed banks from 1934. It can be obtained
+by launching the select-all query at
+\url{https://www5.fdic.gov/hsob/SelectRpt.asp?EntryTyp=30&Header=1}.
 
 \end{document}
