@@ -26,7 +26,7 @@
 \setlength{\oddsidemargin}{0in}
 \setlength{\evensidemargin}{0in}
 \setlength{\columnsep}{2pc}
-\setlength{\parindent}{1em}
+\setlength{\parindent}{0em}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -40,11 +40,52 @@
 \renewcommand{\Pr}{\textbf{\textsf{Pr}}}
 
 \title{Visualization for FDIC Failed Bank List}
-\author{Zhuoyue Zhao (u1064756), Ya Gao (u1137971)\\\{zyzhao, ygao\}@cs.utah.edu}
+\author{Zhuoyue Zhao (u1064756), Ya Gao (u1137971)\\\{zyzhao, ygao\}@cs.utah.edu
+\\https://github.com/zzy7896321/dataviscourse-pr-fdicfailedbanks}
 \date{}
 
 \begin{document}
-\maketitle
-balabala
+
+\paragraph{Basic Info.} Visualization for FDIC Failed Bank List
+
+Group members:
+
+Zhuoyue Zhao (u1065756), zyzhao@cs.utah.edu
+
+Ya Gao (u1137971), ygao@cs.utah.edu
+
+https://github.com/zzy7896321/dataviscourse-pr-fdicfailedbanks
+
+
+\paragraph{Background and Motivation.}
+
+We looked at the resources on the course web page and found this FDIC failed
+bank list. FDIC (Federal Deposit Insurance Corporation) was created in 1933
+to restore public confidence in banking during the Greate Depression in the
+1930s.  It insures a depositor for up to \$250,000 in a FDIC member bank in
+the event of a bank failure. FDIC usually find a bank that is willing to
+acquire a failed bank so that the deposits are simply transferred to the new
+bank. However, sometimes, it cannot find a acquiring bank and will send the
+insured funds directly to the customers. It is amazing that no depositor has
+ever lost FDIC insured funds since its establishment but it is also worrying
+that a massive wave of bank failures or a large bank failure could fail FDIC.
+We are curious about how reliable FDIC has been and will be in the future.
+
+\paragraph{Project Objectives.} 
+
+We plan to visualize the spatio-temporal FDIC bank failures as well as the
+distribution of acquiring banks. 1) The primary goal is to get an idea about
+how useful and reliable FDIC has been in the past. 2) If we have data about
+the amount of assets the failed banks have, we might also want to tell how
+likely will FDIC fail if a lot of bank or a large bank fails. 3) We want to
+use d3 and svg to create the visualization. We also want to use brushing and
+linking to allow exploring the details of the data.
+
+\paragraph{Data.}
+
+We downloaded the FDIC failed bank list since October 1, 2000 from
+\url{https://catalog.data.gov/dataset/fdic-failed-bank-list}. It is a csv file
+and contains the names, the city, the state 
+
 
 \end{document}
