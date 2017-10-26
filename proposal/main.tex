@@ -72,7 +72,6 @@ that a massive wave of bank failures or a large bank failure could fail FDIC.
 We are curious about how reliable FDIC has been and will be in the future.
 
 \paragraph{Project Objectives.} 
-
 We plan to visualize the spatio-temporal FDIC bank failures as well as the
 distribution of acquiring banks. 1) The primary goal is to get an idea about
 how useful and reliable FDIC has been in the past. 2) We might also want to
@@ -82,9 +81,22 @@ the visualization. We also want to use brushing and linking to allow exploring
 the details of the data.
 
 \paragraph{Data.}
+We downloaded a detailed list of FDIC failed banks from 1934. It can be
+obtained by launching the select-all query at
+\url{https://www5.fdic.gov/hsob/SelectRpt.asp?EntryTyp=30&Header=1}. It
+includes the name, the location of the headquarter, the effective date, the
+total deposits, the total assets and other data of the banks. At the current
+stage, we do not think we will need other data in the visualization.
 
-We downloaded a detailed list of FDIC failed banks from 1934. It can be obtained
-by launching the select-all query at
-\url{https://www5.fdic.gov/hsob/SelectRpt.asp?EntryTyp=30&Header=1}.
+\paragraph{Data Processing.}
+The data are quite clean. There are a few missing values in irrelevant columns
+and the estimated loss column. To deal with that, we'll ignore those rows with
+missing values in the estimated loss column. There are 4095 records in the
+table, which might be too many for our purpose. We are considering select a
+recent date range to reduce the amount of data. We also plan to do some
+aggregations over the data on the numeric columns grouped by either year or
+state so that we can have a spatio-temporal summary of the data.
+
+\paragraph{Visualization Design.}
 
 \end{document}
