@@ -85,17 +85,25 @@ We downloaded a detailed list of FDIC failed banks from 1934. It can be
 obtained by launching the select-all query at
 \url{https://www5.fdic.gov/hsob/SelectRpt.asp?EntryTyp=30&Header=1}. It
 includes the name, the location of the headquarter, the effective date, the
-total deposits, the total assets and other data of the banks. At the current
-stage, we do not think we will need other data in the visualization.
+total deposits, the total assets and other data of the banks.
+
+We also have a second list of FDIC failed banks from October 1, 2000, available
+at \url{https://www.fdic.gov/bank/individual/failed/banklist.html}. In
+addition to the data available in the first table, it also lists the acquiring
+institutions of the failed banks.
 
 \paragraph{Data Processing.}
-The data are quite clean. There are a few missing values in irrelevant columns
-and the estimated loss column. To deal with that, we'll ignore those rows with
-missing values in the estimated loss column. There are 4095 records in the
-table, which might be too many for our purpose. We are considering select a
-recent date range to reduce the amount of data. We also plan to do some
-aggregations over the data on the numeric columns grouped by either year or
-state so that we can have a spatio-temporal summary of the data.
+The data in both tables are quite clean. There are a few missing values in
+irrelevant columns and the estimated loss column. To deal with that, we'll
+ignore those rows with missing values in the estimated loss column. There are
+4095 records in the table, which might be too many for our purpose. We are
+considering restricting the data to starting from October 1, 2000. We also
+plan to do some aggregations over the data on the numeric columns grouped by
+either year or state so that we can have a spatio-temporal summary of the
+data. We can also compute the statistics of failed banks each acquiring
+institutions acquired by joining the two table. That's the second reason why
+we will restrict the data in the first table to the ones after October 1,
+2000.
 
 \paragraph{Visualization Design.} We proposed the following 3 prototype designs.
 
