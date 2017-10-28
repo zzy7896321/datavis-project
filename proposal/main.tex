@@ -118,16 +118,35 @@ we will restrict the data in the first table to the ones after October 1,
         \end{figure}
 
         Our first design consists of 3 charts: two yearly bar charts and a
-        map.  The first bar chart is on the top, and plot the number of failed
-        banks of each year from 2000 to 2016. The second bar chart is below
-        the first one, and has the same x-axis. The y-axis is instead the
+        map. 
+        
+        The first bar chart is on the top, and plot the number of failed banks
+        of each year from 2000 to 2016. The second bar chart is below the
+        first one, and has the same x-axis. The y-axis is instead the
         summation of the total deposits in the failed banks in each year.
         These two bar charts show the failure distribution over the years in
         terms of both numbers and amounts. We anticipate that the two
         quantities are correlated but can vary a lot. For example, we expect
-        the hike in the recent financial crisis in 2008 might be more
-        obvious in the second bar chart 
+        the hike in the recent financial crisis from 2008 might be more
+        obvious in the second bar chart since several large banks went
+        bankcrupt.  The map uses color luminance to show the total amount of
+        deposits of the failed banks in each state. It visualizes the spatial
+        distribution of the failed banks.
 
+        The bars in the first bar chart can be selected or multi-selected. The
+        second bar chart and the map are linked to the first bar chart. The
+        bars of the same years in the second bar charts are highlighted as in the
+        first bar charts. The map is updated to display the sum of the selected years.
+
+        An optional feature of this design is to provide a zoom-in feature for
+        both the year charts and the map to allow exploration of the details
+        at a lower granularity.
+
+        The main advantage of this design is giving a summary of the failed
+        banks and clearly shows the trends and distribution in both time and
+        space. However, it lacks the ability to allow user to browse the
+        details even if we have a zoom-in feature that allows the users to
+        zoom-in to monthly charts or state maps.
 
     \item See Figure \ref{fig:design_2}.
 
@@ -138,6 +157,22 @@ we will restrict the data in the first table to the ones after October 1,
             \label{fig:design_2}
         \end{figure}
 
+        The second design features a map and two bar charts as well.
+
+        At the top of the page is a map of the states. In each state, there
+        are circles that represents failed banks, whose color lumination is
+        scaled according to the total deposit. When a user hover the mouse
+        over a circle, a tooltip is shown with the details of the failed bank.
+
+        Below the map are two bar charts. The bar chart on the left shows the
+        number of failed banks over the years while the right shows the top
+        acquiring institions of the failed banks and the total number of
+        failed banks they acquired over the years.
+
+        This design enables browsing details of the failed banks. But the
+        three visualization elements are unlinked. It's hard to use it to
+        explore the data.
+
     \item See Figure \ref{fig:design_3}.
         
         \begin{figure}[!h]
@@ -146,6 +181,30 @@ we will restrict the data in the first table to the ones after October 1,
             \caption{Design 3}
             \label{fig:design_3}
         \end{figure}
+
+        The third design features a map, a bar chart with a configurable
+        y-axis (through a drop-down list).
+
+        The map, similar to that in design 2, plots the failed banks as
+        circles in the states. The color luminance of the circles is scaled
+        according to the total deposits of the failed banks. When the mouse
+        hovers over a circle, the details of that bank is shown in a tooltip.
+
+        The bar chart has year as its x-axis. The y-axis can be chosen in the
+        drop-down list, including total deposits, number, total assets or
+        estimated loss. This is more concise than the previous ones in the
+        first chart and also shows different angles of the data.
+        The bars in the bar chart can be selected as in design 1 and the map
+        is also linked to the selections to reflect the selected years.
+        
+        This design combines the benefits of the previous two and also
+        provides a cleaner and more intuitive visualization. However, it is
+        not as easy as a line chart would be to see the trend in the bar
+        chart. The placement of circles in the map is also hard because there
+        might be multiple banks in the same state. Finally, it lacks the
+        information of acquiring banks, which can give an idea of the roles of
+        large banks and FDIC in the process of bank failure.
+
 \end{enumerate}
 
 After weighing the benefits and drawbacks of the ideas in each design, we
@@ -157,5 +216,68 @@ decided on the following final design (see Figure \ref{fig:final_design}).
     \caption{Final Design}
     \label{fig:final_design}
 \end{figure}
+
+The final design features a line chart, a map and a bar chart.
+
+The line chart is similar to the bar chart in design 3. It has years as the
+x-axis and a configurable y-axis through a drop-down list. The dots in the
+year chart can be selected and the selection is linked to the other two
+charts.
+
+The map uses the real-sized map instead of square grids and each bank is
+represented by a circle whose luminance is scaled according to the total
+assets/deposits (TBD). The location of the dot is at the real location of the
+headquarters of the failed bank. If multiple are in the same city, they will
+be placed around that city. To achieve this, we can either design an algorithm
+to automatically decide where to place the dots, or preprocess the data by
+hand, or a combination of the two. Each dot also has a tooltip that shows the
+detailed information about the failed bank. The dots shown in the map will
+reflect the year selections.
+
+The last chart is a bar chart that shows the top-k acquiring institutions and
+the special case where there's no acquirer if it is not in the chart. The
+y-axis is the total assets of the failed banks that a particular institution
+acquired. This can show the ability of large banks and FDIC to acquire failed
+banks and might be able to show how concentrate the acquirings are.
+
+\paragraph{Must-Have Features.} The must have features include
+
+\begin{itemize}
+    \item A line chart that shows the aggregations over the years.
+
+    \item A map that shows the spatial distribution of the failed banks.
+
+    \item A bar chart that shows the top-k acquiring institutions.
+
+    \item They are linked together and years can be selected by clicking the
+        bars in the first bar chart.
+\end{itemize}
+
+\paragraph{Optional Features.} The optional features include
+
+\begin{itemize}
+    \item Zoom-in functionality on both year charts (into month chart)
+         and the map (into state-level maps).
+
+     \item Fancy animations.
+\end{itemize}
+
+\paragraph{Project Schedule.} $\quad$
+
+\begin{center}
+\begin{tabular}{l|p{10cm}}
+    \hline
+    Week & Task \\\hline
+    Oct 30 - Nov 4 & Create a static html with empty divs. Start working on
+    the charts. Zhuoyue will be responsible for the line chart and preparing
+    the data. Ya will be responsible for plotting the map and the bar chart.
+    \\\hline 
+    Nov 6 - Nov 11 & Continue working on the charts and at least be able to
+    show something on the webpage. Prepare the Project Milestone.\\\hline
+    Nov 13 - Nov 24 & Continue working on the charts. \\\hline
+    Nov 27 - Dec 1 & Finish everything, write the report and create the project
+    screen-cast. \\\hline
+\end{tabular}
+\end{center}
 
 \end{document}
