@@ -157,17 +157,18 @@ we will restrict the data in the first table to the ones after October 1,
             \label{fig:design_2}
         \end{figure}
 
-        The second design features a map and two bar charts as well.
+        The second design features a map, a bar chart and a list of top
+        acquiring institutions.
 
         At the top of the page is a map of the states. In each state, there
         are circles that represents failed banks, whose color lumination is
         scaled according to the total deposit. When a user hover the mouse
         over a circle, a tooltip is shown with the details of the failed bank.
 
-        Below the map are two bar charts. The bar chart on the left shows the
-        number of failed banks over the years while the right shows the top
-        acquiring institions of the failed banks and the total number of
-        failed banks they acquired over the years.
+        Below the map are the bar chart ant the list. The bar chart on the
+        left shows the number of failed banks over the years while the list on
+        the right shows the top acquiring institions of the failed banks by
+        the total number of failed banks they acquired over the years.
 
         This design enables browsing details of the failed banks. But the
         three visualization elements are unlinked. It's hard to use it to
@@ -224,15 +225,15 @@ x-axis and a configurable y-axis through a drop-down list. The dots in the
 year chart can be selected and the selection is linked to the other two
 charts.
 
-The map uses the real-sized map instead of square grids and each bank is
-represented by a circle whose luminance is scaled according to the total
-assets/deposits (TBD). The location of the dot is at the real location of the
-headquarters of the failed bank. If multiple are in the same city, they will
-be placed around that city. To achieve this, we can either design an algorithm
-to automatically decide where to place the dots, or preprocess the data by
-hand, or a combination of the two. Each dot also has a tooltip that shows the
-detailed information about the failed bank. The dots shown in the map will
-reflect the year selections.
+The map uses the map with the realistic shapes instead of square grids and
+each bank is represented by a circle whose luminance is scaled according to
+the total assets/deposits (TBD). The location of the dot is at the real
+location of the headquarters of the failed bank. If multiple are in the same
+city, they will be placed around that city. To achieve this, we can either
+design an algorithm to automatically decide where to place the dots, or
+preprocess the data by hand, or a combination of the two. Each dot also has a
+tooltip that shows the detailed information about the failed bank. The dots
+shown in the map will reflect the year selections.
 
 The last chart is a bar chart that shows the top-k acquiring institutions and
 the special case where there's no acquirer if it is not in the chart. The
