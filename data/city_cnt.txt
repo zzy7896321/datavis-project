@@ -1,0 +1,437 @@
+Chicago, IL	19
+Atlanta, GA	10
+Phoenix, AZ	6
+Naples, FL	5
+Alpharetta, GA	4
+Los Angeles, CA	4
+Scottsdale, AZ	4
+Bradenton, FL	4
+Miami, FL	4
+Las Vegas, NV	4
+Stockbridge, GA	3
+Baltimore, MD	3
+Sarasota, FL	3
+Henderson, NV	3
+Tampa, FL	3
+Milwaukee, WI	3
+Woodstock, GA	3
+Birmingham, AL	3
+Asheville, NC	3
+Forest Lake, MN	2
+Duluth, GA	2
+Fort Lauderdale, FL	2
+McDonough, GA	2
+Greeley, CO	2
+Olathe, KS	2
+San Francisco, CA	2
+Tacoma, WA	2
+St. Louis, MO	2
+Valdosta, GA	2
+La Jolla, CA	2
+Coral Gables, FL	2
+Kansas City, MO	2
+Houston, TX	2
+Winder, GA	2
+Crestview, FL	2
+Ocala, FL	2
+Farmington Hills, MI	2
+Pittsburgh, PA	2
+Gray, GA	2
+Denver, CO	2
+Charleston, SC	2
+Orlando, FL	2
+Newnan, GA	2
+Reno, NV	2
+San Juan, PR	2
+Cartersville, GA	2
+Wilmington, NC	2
+Boca Raton, FL	2
+Douglasville, GA	2
+Newport Beach, CA	2
+Mesa, AZ	2
+Jasper, GA	2
+Carrollton, GA	2
+Macon, GA	2
+Overland Park, KS	2
+Ellijay, GA	2
+Seattle, WA	2
+San Diego, CA	2
+Fort Myers, FL	2
+Jackson, GA	2
+New York, NY	2
+Jacksonville, FL	2
+Palatka, FL	2
+Longview, WA	2
+Palm Desert, CA	2
+Greenwood Village, CO	1
+Rosedale, MS	1
+Covington, LA	1
+Shelbyville, IN	1
+Rancho Cucamonga, CA	1
+Lantana, FL	1
+Racine, WI	1
+Malta, OH	1
+Bellingham, WA	1
+Napa, CA	1
+Lowell, MA	1
+McCaysville, GA	1
+Woodbury, MN	1
+Nevada City, CA	1
+Westmont, IL	1
+Stockton, CA	1
+Danville, IL	1
+Teague, TX	1
+Edinburg, TX	1
+Aurora, MN	1
+New Baltimore, MI	1
+Dallas, GA	1
+Milton, FL	1
+Irondale, AL	1
+Memphis, TN	1
+Ketchum, ID	1
+Pasadena, CA	1
+Spring Grove, MN	1
+Pennsville, NJ	1
+Graceville, FL	1
+Chico, CA	1
+Flagstaff, AZ	1
+Dawsonville, GA	1
+Hastings, MI	1
+Clermont, FL	1
+The Dalles, OR	1
+Panama City Beach, FL	1
+St. Charles, IL	1
+Butler, MO	1
+Springfield, GA	1
+Lincoln, NE	1
+Montgomery, AL	1
+Philadelphia, PA	1
+Louisville, KY	1
+Stoughton, WI	1
+Harvey, IL	1
+Lutz, FL	1
+Oakwood, OH	1
+Cincinnati, OH	1
+Randallstown, MD	1
+Layton, UT	1
+Fort Lee, NJ	1
+Oakdale, MN	1
+Lynnwood, WA	1
+Metropolis, IL	1
+Glasgow, MO	1
+Marco Island, FL	1
+Kenosha, WI	1
+The Woodlands, TX	1
+Taos, NM	1
+Merced, CA	1
+Stamford, CT	1
+Alamo, TN	1
+Maple Grove, MN	1
+Braselton, GA	1
+Watkinsville, GA	1
+Jonesboro, GA	1
+Arlington, WA	1
+Clinton, IL	1
+Woodland Hills, CA	1
+Crawfordville, FL	1
+Waukegan, IL	1
+Statesboro, GA	1
+Hallock, MN	1
+Rolling Meadows, IL	1
+Parma, OH	1
+Carthage, MS	1
+Torrance, CA	1
+Lakeview, OH	1
+Prineville, OR	1
+Conyers, GA	1
+Chesterfield, MO	1
+Gold Canyon, AZ	1
+Sunrise Beach, MO	1
+LaGrange, GA	1
+Sioux Falls, SD	1
+Apollo Beach, FL	1
+Winchester, IL	1
+Altus, OK	1
+Gilbert, AZ	1
+Englewood, FL	1
+Horsham, PA	1
+Huntingdon Valley, PA	1
+Ridgewood, NJ	1
+Hoffman Estates, IL	1
+Bridgeport, CT	1
+Maywood, IL	1
+University Place, WA	1
+Honolulu, HI	1
+Oakland, CA	1
+Roswell, GA	1
+Boise, ID	1
+Sanderson, TX	1
+Anthony, KS	1
+Granite Bay, CA	1
+Bentonville, AR	1
+Lincolnwood, IL	1
+Springfield, IL	1
+Ponte Vedra Beach, FL	1
+Bonifay, FL	1
+Sterling, VA	1
+Normal, IL	1
+Bakersfield, CA	1
+Newark, NJ	1
+Lenoir, NC	1
+Perry, GA	1
+Silverton, OR	1
+Palm Springs, CA	1
+Shorewood, IL	1
+Peotone, IL	1
+Lynchburg, TN	1
+Camargo, OK	1
+Burlington, WI	1
+Burlington, WA	1
+Glenwood, IL	1
+Lacey, WA	1
+Franklin, GA	1
+Des Plaines, IL	1
+Cranford, NJ	1
+Columbus, IN	1
+Gaithersburg, MD	1
+Woodbury, GA	1
+Johnston, IA	1
+Easley, SC	1
+Kaysville, UT	1
+Hinsdale, IL	1
+West Allis, WI	1
+Clewiston, FL	1
+Detroit, MI	1
+Arcola, IL	1
+Solvang, CA	1
+Bloomington, MN	1
+Plano, TX	1
+Cherry Hill, NJ	1
+Marianna, FL	1
+Columbia, SC	1
+Sonoma, CA	1
+Dallas, TX	1
+Mayaguez, PR	1
+Saint George, UT	1
+Elizabeth, IL	1
+Moline, IL	1
+Villa Rica, GA	1
+Pawleys Island, SC	1
+Berkeley, IL	1
+Draper, UT	1
+Vidalia, GA	1
+Westminster, CA	1
+Eldred, IL	1
+Buford, GA	1
+Macomb, IL	1
+Cumming, GA	1
+Northfork, WV	1
+City, ST	1
+Pittsfield, IL	1
+Culver City, CA	1
+Orange Park, FL	1
+Springfield, MO	1
+Paola, KS	1
+Champlin, MN	1
+Reidsville, GA	1
+Port Huron, MI	1
+Saint Paul, MN	1
+Tifton, GA	1
+Spartanburg, SC	1
+Port Chester, NY	1
+Salt Lake City, UT	1
+Wilmette, IL	1
+West Chicago, IL	1
+Manchester, NH	1
+Freedom, OK	1
+New Orleans, LA	1
+St. Stephen, MN	1
+Milford, OH	1
+Clearwater, FL	1
+Carson City, NV	1
+Whiteville, NC	1
+Commerce, GA	1
+Port Saint Joe, FL	1
+Andover, MN	1
+Lawrenceville, GA	1
+Ephraim, UT	1
+Rising Sun, MD	1
+Bluffton, SC	1
+Bainbridge Island, WA	1
+Fayetteville, GA	1
+Vancouver, WA	1
+Williamsville, NY	1
+Lemont, IL	1
+Davis, OK	1
+Creve Coeur, MO	1
+Mulberry, AR	1
+Mankato, MN	1
+Panama City, FL	1
+Winter Park, FL	1
+Elmwood Park, IL	1
+Blackwell, OK	1
+Wyoming, MN	1
+Brunswick, GA	1
+Mount Clemens, MI	1
+Warren, MI	1
+Kingfisher, OK	1
+Dearborn, MI	1
+Saint Marys, GA	1
+Naperville, IL	1
+Ellaville, GA	1
+Batesville, AR	1
+Kingstree, SC	1
+Northville, MI	1
+Bartow, FL	1
+Hato Rey, PR	1
+Sugar Creek, MO	1
+Omaha, NE	1
+Wood Dale, IL	1
+Savannah, GA	1
+San Clemente, CA	1
+Brooksville, FL	1
+Palm Beach, FL	1
+Kennesaw, GA	1
+Destin, FL	1
+Sterling Heights, MI	1
+Loganville, GA	1
+Prescott, AZ	1
+Saint Elmo, IL	1
+Champaign, IL	1
+Leeton, MO	1
+Decatur, GA	1
+Sylvan Grove, KS	1
+Western Springs, IL	1
+Thermopolis, WY	1
+Cottonwood Heights, UT	1
+White Plains, NY	1
+San Rafael, CA	1
+Hamtramck, MI	1
+Port St. Lucie, FL	1
+Evansville, IN	1
+Aurora, IL	1
+Port Orange, FL	1
+Gravette, AR	1
+Snohomish, WA	1
+Lino Lakes, MN	1
+Bel Air, MD	1
+Jefferson City, MO	1
+Loup City, NE	1
+Key West, FL	1
+Argonia, KS	1
+Franklin, TN	1
+Gordon, GA	1
+Peachtree City, GA	1
+Irvine, CA	1
+Carrabelle, FL	1
+La Coste, TX	1
+Santa Fe, NM	1
+Acworth, GA	1
+Cornelia, GA	1
+Norfolk, VA	1
+Pomona, CA	1
+Austin, TX	1
+Aledo, IL	1
+Sparta, GA	1
+Eugene, OR	1
+Rockmart, GA	1
+West Chester, OH	1
+Crofton, MD	1
+Princeton, IL	1
+Hume, MO	1
+Albuquerque, NM	1
+North Las Vegas, NV	1
+Germantown, MD	1
+King of Prussia, PA	1
+Sedalia, MO	1
+Tamarac, FL	1
+Crete, IL	1
+Oregon, IL	1
+Elizabeth, NJ	1
+Hancock, MN	1
+Aventura, FL	1
+Knoxville, TN	1
+Tallahassee, FL	1
+Beaverton, OR	1
+Madisonville, TX	1
+Staples, MN	1
+Bremerton, WA	1
+Rockford, IL	1
+Pine City, MN	1
+Martinsville, VA	1
+Myrtle Beach, SC	1
+San Luis Obispo, CA	1
+Sierra Blanca, TX	1
+Cape Coral, FL	1
+Clarkesville, GA	1
+Norcross, GA	1
+Rock Spring, GA	1
+Geneva, IL	1
+Everett, WA	1
+Sylacauga, AL	1
+Belleview, FL	1
+Cocoa Beach, FL	1
+Bala Cynwyd, PA	1
+Redlands, CA	1
+Fort Deposit, AL	1
+Louisville, CO	1
+Fort Pierce, FL	1
+Fairfax, SC	1
+Ventura, CA	1
+Cave Junction, OR	1
+Windsor, CO	1
+Plymouth, MI	1
+Blanchardville, WI	1
+Parsons, TN	1
+Shabbona, IL	1
+Jupiter, FL	1
+Orland Park, IL	1
+Colorado Springs, CO	1
+Otsego, MN	1
+Ailey, GA	1
+Lacombe, LA	1
+Calabasas, CA	1
+Temecula, CA	1
+Cheneyville, LA	1
+Sevierville, TN	1
+Rosemount, MN	1
+Wausau, WI	1
+Doraville, GA	1
+New Prague, MN	1
+Reston, VA	1
+Berwyn, IL	1
+Ogden, UT	1
+Suwanee, GA	1
+North Lauderdale, FL	1
+Hiawassee, GA	1
+Lexington, KY	1
+El Reno, OK	1
+Oak Forest, IL	1
+Cleveland, OH	1
+Clayton, GA	1
+East Ellijay, GA	1
+Palos Heights, IL	1
+Shoreline, WA	1
+Leawood, KS	1
+Barnesville, GA	1
+Richmond, VA	1
+Cambridge, MD	1
+Immokalee, FL	1
+Boothwyn, PA	1
+Antioch, IL	1
+Shelby Township, MI	1
+Cassville, WI	1
+Worth, IL	1
+Venice, FL	1
+Little Falls, MN	1
+Southampton, PA	1
+Sioux City, IA	1
+Topeka, KS	1
+Ellington, MO	1
+Castle Rock, CO	1
+Berwyn, PA	1
+Pueblo, CO	1
+Colfax, WA	1
+Marietta, GA	1
+Santa Monica, CA	1
+Elko, NV	1
