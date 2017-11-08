@@ -1,5 +1,4 @@
 class Map {
     constructor() {
-
     }
 }
