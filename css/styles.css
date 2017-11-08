@@ -7,5 +7,10 @@
     stroke-width: 1px;
     stroke: #222;
 }
+.lineChart{
+    stroke: grey;
+    stroke-width: 2;
+}
+
 
 
