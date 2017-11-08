@@ -57,6 +57,8 @@ class LineChart{
          //   .classed("lineChart",true);
     }
 
+    update() {
 
+    }
 
 }
