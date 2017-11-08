@@ -12,6 +12,8 @@ class LineChart{
             .attr("height",this.svgHeight);
     }
 
+    update() {
 
+    }
 
 }

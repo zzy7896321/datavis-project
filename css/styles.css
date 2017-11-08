@@ -1,0 +1,11 @@
+#map {
+    margin-left: 60px;
+}
+
+.map-border {
+    fill: none;
+    stroke-width: 1px;
+    stroke: #222;
+}
+
+
