@@ -1,5 +1,9 @@
-    //load data
-    d3.csv("data/joined_table.csv", function (error, electionWinners) {
-        let yearChart = new YearChart(electoralVoteChart, tileChart, votePercentageChart, electionWinners);
-        yearChart.update();
-    });
+
+let barChart = new BarChart();
+let map = new Map();
+let lineChart = new LineChart(barChart, map);
+
+d3.csv("data/joined_table.csv", function (error, electionWinners) {
+    lineChart.update(electionWinners);
+});
+
