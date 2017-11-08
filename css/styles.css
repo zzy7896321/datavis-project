@@ -13,4 +13,13 @@
 }
 
 
+.map-text {
+    text-anchor: middle;
+}
+
+.map-line {
+    stroke: gray;
+    stroke-width: 1px;
+}
+
 

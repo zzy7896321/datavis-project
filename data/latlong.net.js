@@ -1,7 +1,5 @@
 //https://www.latlong.net/
 // use the console of chrome
-// manually change the id of the find button to find_button
-// replace #JY3934 with the id of the location input box
 
 (function() {
   if (! window.jQuery ) {
@@ -14,13 +12,16 @@
   }
 }());
 
+let input = $("input[placeholder='Type a place name']");
+let find_button = input.next();
+
 function next() {
 	result.push([city_names[cur], +$("#lat").val(), +$("#lng").val()]);
     ++cur;
     if (cur < city_names.length) {
-        $("#JY3934").val(city_names[cur]);
+        input.val(city_names[cur]);
         (new Promise(r => setTimeout(r, 500))).then(function () {
-			$("#find_button").click();
+			find_button.click();
 			(new Promise(r => setTimeout(r, 5000))).then(function () {next()});
 		});
     }
@@ -29,9 +30,9 @@ function next() {
 function start_first() {
     result = [];
     cur = 0;
-    $("#JY3934").val(city_names[cur]);
+    input.val(city_names[cur]);
 	(new Promise(r => setTimeout(r, 500))).then(function () {
-		$("#find_button").click();
+		find_button.click();
 		(new Promise(r => setTimeout(r, 5000))).then(function () {next()});
 	});
 }
