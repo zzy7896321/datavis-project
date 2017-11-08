@@ -1,6 +1,6 @@
 class LineChart{
 
-    constructor(){
+    constructor(barChart, map, banks){
         this.margin = {top: 20, right: 20, bottom: 30, left: 50};
         let divlineChart = d3.select("#line-chart");
         this.svgBounds = divlineChart.node().getBoundingClientRect();
