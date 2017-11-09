@@ -73,7 +73,23 @@ class LineChart{
             .range([0,thistable.svgHeight]);
         //console.log(thistable.banks.length);
 
-        //draw lines
+        // Create the axes
+        let xAxis = d3.axisTop();
+        xAxis.scale(thistable.xScale);
+        this.svg.append("g").attr("id","xAxis");
+        d3.select("#xAxis")
+            .attr("transform", "translate(10,50),scale(1, -1)")
+            .call(xAxis)
+            .selectAll("text")
+            .attr("transform", "translate(10, -20) scale(1, -1) rotate(-90)");
+        let yAxis = d3.axisLeft();
+        yAxis.scale(thistable.yScale);
+        d3.select("#yAxis").attr("transform", "scale(1, -1)")
+            .call(yAxis)
+            .selectAll("text")
+            .attr("transform", "scale(1, -1)");
+
+        //create lines
         this.svg.selectAll("line").data(aggrebanks).enter().append("line")
             .attr("x1",function (d) {
                 return thistable.xScale(d.efyear);

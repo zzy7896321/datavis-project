@@ -74,15 +74,31 @@ class Map {
             .append("path")
             .attr("d", path)
             .classed("map-border", true);
-
-        this.markerLayer.append("circle")
-            .attr("cx", this.projection([-87.629798, 41.878114])[0])
-            .attr("cy", this.projection([-87.629798, 41.878114])[1])
-            .attr("r", 3)
-            .style("fill", "red");
     }
 
     update(banks) {
+
+/*        this.markerLayer.append("circle")
+            .attr("cx", this.projection([-87.629798, 41.878114])[0])
+            .attr("cy", this.projection([-87.629798, 41.878114])[1])
+            .attr("r", 3)
+            .style("fill", "red"); */
         console.log(banks);
+
+        let thismap = this;
+
+        let circles = this.markerLayer.selectAll("circle")
+            .data(banks);
+        circles.exit().remove();
+        circles = circles.merge(circles.enter().append("circle"));
+        
+        circles.attr("cx", function(d) {
+            return thismap.projection([d.lng, d.lat])[0];
+        })
+        .attr("cy", function (d) {
+            return thismap.projection([d.lng, d.lat])[1];
+        })
+        .attr("r", 3)
+        .style("fill", "red");
     }
 }
