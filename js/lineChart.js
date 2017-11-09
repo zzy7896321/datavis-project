@@ -62,15 +62,16 @@ class LineChart{
             aggrebanks[i].nextamount = aggrebanks[i+1].amount;
         }
         aggrebanks[aggrebanks.length-1].nextamount = null;
-       // console.log(aggrebanks);
+        console.log(aggrebanks);
 
         //scale
         this.xScale = d3.scaleLinear()
-            .domain([(d3.min(aggrebanks,d=>d.efyear)-1),(d3.max(aggrebanks,d=>d.efyear)+1)])
+            .domain([(+d3.min(aggrebanks,d=>d.efyear)-1),(+d3.max(aggrebanks,d=>d.efyear)+1)])
             .range([0,thistable.svgwidth]);
         this.yScale = d3.scaleLinear()
-            .domain([0,d3.max(aggrebanks,d=>d.amount)])
+            .domain([0,thistable.banks.length])
             .range([0,thistable.svgHeight]);
+        //console.log(thistable.banks.length);
 
         //draw lines
         this.svg.selectAll("line").data(aggrebanks).enter().append("line")
@@ -83,7 +84,7 @@ class LineChart{
                 }
             })
             .attr("x2",function (d) {
-                return thistable.xScale(d.efyear + 1);
+                return thistable.xScale(+d.efyear + 1);
             })
             .attr("y2",function (d) {
                 if(d.nextamount !== null){
