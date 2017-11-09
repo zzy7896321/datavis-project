@@ -18,7 +18,7 @@ class LineChart{
     }
     
     update(){
-
+        this.bmap.update(this.banks); 
         let thistable = this;
 
         let bdate = "Effective Date";

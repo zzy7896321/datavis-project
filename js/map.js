@@ -83,6 +83,6 @@ class Map {
     }
 
     update(banks) {
-
+        console.log(banks);
     }
 }
