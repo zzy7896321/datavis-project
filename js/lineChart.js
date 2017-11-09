@@ -77,20 +77,23 @@ class LineChart{
         let xAxis = d3.axisTop();
         xAxis.scale(thistable.xScale);
         this.svg.append("g").attr("id","xAxis");
+        this.svg.append("g").attr("id","yAxis");
         d3.select("#xAxis")
-            .attr("transform", "translate(10,50),scale(1, -1)")
+            .attr("transform", "translate(40," + (+thistable.svgHeight-20) + ")")
             .call(xAxis)
             .selectAll("text")
-            .attr("transform", "translate(10, -20) scale(1, -1) rotate(-90)");
+            .attr("transform", "translate(0,20)");
         let yAxis = d3.axisLeft();
         yAxis.scale(thistable.yScale);
-        d3.select("#yAxis").attr("transform", "scale(1, -1)")
+        d3.select("#yAxis")
+            .attr("transform", "translate(40,-20)")
             .call(yAxis)
             .selectAll("text")
-            .attr("transform", "scale(1, -1)");
+            .attr("transform", "scale(1, -1) rotate(180)");
 
         //create lines
-        this.svg.selectAll("line").data(aggrebanks).enter().append("line")
+        let line = this.svg.append("g").attr("id","lines");
+        line.selectAll("line").data(aggrebanks).enter().append("line")
             .attr("x1",function (d) {
                 return thistable.xScale(d.efyear);
             })
