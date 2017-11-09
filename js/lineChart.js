@@ -3,7 +3,7 @@ class LineChart{
     constructor(barChart, bmap, banks){
 
         this.barChart = barChart;
-        this.bmap = map;
+        this.bmap = bmap;
         this.banks = banks;
 
         this.margin = {top: 20, right: 20, bottom: 30, left: 50};
