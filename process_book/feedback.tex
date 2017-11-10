@@ -1,0 +1,38 @@
+\section{Feedback from Peer Review}
+We discussed our project proposal with Yanqing Peng and Yuwei Wang. While they
+found our project scope is adequate for a course project and our story make
+sense, we received the following valuable comments from them.
+
+\begin{enumerate}[1.]
+    \item {\bfseries
+        Though the design gives a global picture of how bank failures are
+        distributed over time and space, it is hard to pinpoint a specific
+        bank of interest. The design does provide detailed information of a
+        bank by hovering over a dot on the map, a bank of interest might not
+        be known by its headquarter location. Rather it's more likely to be
+        the bank name.}
+
+    We will add a search box that allows searching specific banks. Those banks
+    whose names partially match the search string will be highlighted on the
+    map.
+
+    \item {\bfseries
+        The design lacks the usage of colors.
+    }
+
+    We plan to use a color scale on the dots of the map to indicate the size
+    of it (TBD, either using the total deposits or the total assets).
+
+    \item {\bfseries
+        The bar chart is a bit confusing. It's not clear that it is linked to
+        the line chart and the order of x-axis is not specified.
+    }
+
+    We will clarify the linking by very obvious chart titles/axis titles. We
+    will also optimize the layout so that the linking is easy to identify.
+\end{enumerate}
+
+We appreciate Yanqing and Yuwei's inspiring and high-quality comments. We
+both find them essential to make our visualization easier to explore and more
+self-explanatory. We have added the fixes to our implementation plan.
+
