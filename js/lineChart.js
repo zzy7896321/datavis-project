@@ -54,6 +54,12 @@ class LineChart{
                     aggrebanks[k].efyear = thistable.banks[i].efyear;
                     aggrebanks[k].amount = j+1;
                     k++;
+                    while(thistable.banks[i+1].efyear !== +thistable.banks[i].efyear +1){
+                        aggrebanks[k].efyear = +thistable.banks[i].efyear;
+                        aggrebanks[k].amount = 0;
+                        k++;
+                        i++;
+                    }
                     j = 0;
                 }
             }
