@@ -78,11 +78,6 @@ class Map {
 
     update(banks) {
 
-/*        this.markerLayer.append("circle")
-            .attr("cx", this.projection([-87.629798, 41.878114])[0])
-            .attr("cy", this.projection([-87.629798, 41.878114])[1])
-            .attr("r", 3)
-            .style("fill", "red"); */
         console.log(banks);
 
         let thismap = this;
