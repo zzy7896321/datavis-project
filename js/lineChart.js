@@ -42,7 +42,7 @@ class LineChart{
         for(let i = 0; i < thistable.banks.length; i++){
             if(i === thistable.banks.length -1){
                 aggrebanks.push({});
-                aggrebanks[k].efyear = thistable.banks[i].efyear;
+                aggrebanks[k].efyear = +thistable.banks[i].efyear;
                 aggrebanks[k].amount = j+1;
                 k++;
                 j = 0;
@@ -51,14 +51,15 @@ class LineChart{
                     j++;
                 }else{
                     aggrebanks.push({});
-                    aggrebanks[k].efyear = thistable.banks[i].efyear;
+                    aggrebanks[k].efyear = +thistable.banks[i].efyear;
                     aggrebanks[k].amount = j+1;
                     k++;
-                    while(thistable.banks[i+1].efyear !== +thistable.banks[i].efyear +1){
-                        aggrebanks[k].efyear = +thistable.banks[i].efyear;
+                    while(+thistable.banks[i+1].efyear !== aggrebanks[k-1].efyear +1){
+                        console.log([+thistable.banks[i+1].efyear, aggrebanks[k-1].efyear + 1]);
+                        aggrebanks.push({});
+                        aggrebanks[k].efyear = aggrebanks[k-1].efyear + 1;
                         aggrebanks[k].amount = 0;
                         k++;
-                        i++;
                     }
                     j = 0;
                 }
