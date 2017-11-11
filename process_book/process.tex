@@ -42,12 +42,34 @@ filtered out those records.
 
 \newpage
 
-\section{Screenshot before milestone}
+\section{Screenshot before milestone (Nov 10, 2017)}
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=\textwidth]{fig/placeholder}
-    \caption{A screenshot for the milestone}
+    \includegraphics[width=\textwidth]{fig/Nov10}
+    \caption{A screenshot for the milestone as of November 10}
     \label{fig:milestone}
 \end{figure}
-Now, this is what we have (see Figure \ref{fig:milestone}).
+
+Now, this is what we have (see Figure \ref{fig:milestone}) as of the milestone
+(Nov 10, 2017). We have the line chart and the map set up with the bar chart
+yet to complete. 
+
+The line chart still doesn't have a drop-down list to select
+the y-axis, which is currently the number of failed banks in a year. We plan
+to add a dots to the line chart so that a user can easily select one or some
+of the years. We also plan to add tooltips to each dot so that the exact
+number is easy to read, as some of them are quite small compared to those of
+2008-2010.
+
+The map hasn't been linked to the line chart and only plots the full dataset.
+As shown in the figure, some areas has dense population of failed banks,
+making it hard to use tooltip to show the details. And some of the banks are
+in the same city (e.g., surprisingly 19 in Chicago, IL, 10 in Atlanta, GA,
+while New York City only has 2), which also makes tooltip infeasible. Instead
+of tooltips, we plan to use 2D brush to select a range of banks. And we'll
+show a list of those banks. The user can click on one of them to expand the
+detailed information about it on a separate box.
+
+Hopefully, our work will have a functioning line chart and map by the next
+week.
