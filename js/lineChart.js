@@ -9,7 +9,7 @@ class LineChart{
         this.margin = {top: 20, right: 20, bottom: 30, left: 50};
         let divlineChart = d3.select("#line-chart");
         this.svgBounds = divlineChart.node().getBoundingClientRect();
-        this.svgwidth = this.svgBounds.width - this.margin.left - this.margin.right;
+        this.svgwidth = 1100 - this.margin.left - this.margin.right;
         this.svgHeight = 200;
 
         this.svg = divlineChart.append("svg")
@@ -73,11 +73,11 @@ class LineChart{
 
         //scale
         this.xScale = d3.scaleLinear()
-            .domain([(+d3.min(aggrebanks,d=>d.efyear)-1),(+d3.max(aggrebanks,d=>d.efyear)+1)])
-            .range([0,thistable.svgwidth]);
+            .domain([(+d3.min(aggrebanks,d=>d.efyear)) - 1,(+d3.max(aggrebanks,d=>d.efyear)) + 1])
+            .range([40,thistable.svgwidth - 40]);
         this.yScale = d3.scaleLinear()
-            .domain([0,thistable.banks.length])
-            .range([0,thistable.svgHeight]);
+            .domain([0, d3.max(aggrebanks, d => d.amount)])
+            .range([thistable.svgHeight - this.margin.bottom, this.margin.top]).nice();
         //console.log(thistable.banks.length);
 
         // Create the axes
@@ -86,36 +86,35 @@ class LineChart{
         this.svg.append("g").attr("id","xAxis");
         this.svg.append("g").attr("id","yAxis");
         d3.select("#xAxis")
-            .attr("transform", "translate(40," + (+thistable.svgHeight-20) + ")")
+            .attr("transform", "translate(0," + (+thistable.svgHeight-this.margin.bottom) + ")")
             .call(xAxis)
             .selectAll("text")
             .attr("transform", "translate(0,20)");
         let yAxis = d3.axisLeft();
         yAxis.scale(thistable.yScale);
         d3.select("#yAxis")
-            .attr("transform", "translate(40,-20)")
+            .attr("transform", "translate(40, 0)")
             .call(yAxis)
-            .selectAll("text")
-            .attr("transform", "scale(1, -1) rotate(180)");
+            .selectAll("text");
+            //.attr("transform", "scale(1, -1) rotate(180)");
 
         //create lines
         let line = this.svg.append("g").attr("id","lines");
-        line.selectAll("line").data(aggrebanks).enter().append("line")
+        line.selectAll("line").data(aggrebanks)
+            .enter()
+            .filter(d => d.nextamount !== null)
+            .append("line")
             .attr("x1",function (d) {
                 return thistable.xScale(d.efyear);
             })
             .attr("y1",function (d) {
-                if(d.nextamount !== null){
-                    return thistable.yScale(d.amount);
-                }
+                return thistable.yScale(d.amount);
             })
             .attr("x2",function (d) {
                 return thistable.xScale(+d.efyear + 1);
             })
             .attr("y2",function (d) {
-                if(d.nextamount !== null){
-                    return thistable.yScale(d.nextamount);
-                }
+                return thistable.yScale(d.nextamount);
             })
             .classed("lineChart",true);
     }
