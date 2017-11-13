@@ -117,6 +117,18 @@ class LineChart{
                 return thistable.yScale(d.nextamount);
             })
             .classed("lineChart",true);
+        let circle = this.svg.append("g").attr("id","circles");
+        circle.selectAll("circle").data(aggrebanks)
+            .enter()
+            .filter(d=> d.nextamount !== null)
+            .append("line")
+            .attr("r",5)
+            .attr("cx",function (d) {
+                return thistable.xScale(d.efyear);
+            })
+            .attr("cy",function (d) {
+                return thistable.yScale(d.amount);
+            })
     }
 
 }
