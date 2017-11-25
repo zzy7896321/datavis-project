@@ -55,7 +55,7 @@ class LineChart{
                     aggrebanks[k].amount = j+1;
                     k++;
                     while(+thistable.banks[i+1].efyear !== aggrebanks[k-1].efyear +1){
-                        console.log([+thistable.banks[i+1].efyear, aggrebanks[k-1].efyear + 1]);
+                        //console.log([+thistable.banks[i+1].efyear, aggrebanks[k-1].efyear + 1]);
                         aggrebanks.push({});
                         aggrebanks[k].efyear = aggrebanks[k-1].efyear + 1;
                         aggrebanks[k].amount = 0;
@@ -121,7 +121,7 @@ class LineChart{
         circle.selectAll("circle").data(aggrebanks)
             .enter()
             .filter(d=> d.nextamount !== null)
-            .append("line")
+            .append("circle")
             .attr("r",5)
             .attr("cx",function (d) {
                 return thistable.xScale(d.efyear);
