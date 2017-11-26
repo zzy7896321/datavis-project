@@ -1,6 +1,6 @@
 class Map {
     constructor(states) {
-        console.log(states);
+        //console.log(states);
         let thismap = this;
 
         this.width = 1000;
@@ -78,7 +78,7 @@ class Map {
 
     update(banks) {
 
-        console.log(banks);
+        //console.log(banks);
 
         let thismap = this;
 

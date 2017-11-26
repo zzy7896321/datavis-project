@@ -18,7 +18,8 @@ class LineChart{
     }
     
     update(){
-        this.bmap.update(this.banks); 
+        this.bmap.update(this.banks);
+        this.barChart.update(this.banks);
         let thistable = this;
 
         let bdate = "Effective Date";
@@ -33,7 +34,7 @@ class LineChart{
             return a.efyear - b.efyear;
         });
 
-        console.log(thistable.banks);
+        //console.log(thistable.banks);
 
         //aggregation
         let aggrebanks = [];
@@ -69,7 +70,7 @@ class LineChart{
             aggrebanks[i].nextamount = aggrebanks[i+1].amount;
         }
         aggrebanks[aggrebanks.length-1].nextamount = null;
-        console.log(aggrebanks);
+        //console.log(aggrebanks);
 
         //scale
         this.xScale = d3.scaleLinear()
