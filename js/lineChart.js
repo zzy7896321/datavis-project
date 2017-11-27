@@ -33,7 +33,7 @@ class LineChart{
         let thistable = this;
 
         //console.log(choosedata);
-        console.log(thistable.banks);
+        //console.log(thistable.banks);
 
         //aggregation
         let aggrebanks = [];
@@ -198,10 +198,16 @@ class LineChart{
             }
             //console.log(thistable.list_of_years);
             if(thistable.list_of_years.length === 0){
+                thistable.whole_years.sort(function (a,b) {
+                    return a - b;
+                });
                 thistable.bmap.update(thistable.whole_years);
                 thistable.barChart.update(thistable.whole_years);
                 //console.log(thistable.whole_years);
             }else{
+                thistable.list_of_years.sort(function (a,b) {
+                    return a - b;
+                });
                 thistable.bmap.update(thistable.list_of_years);
                 thistable.barChart.update(thistable.list_of_years);
             }

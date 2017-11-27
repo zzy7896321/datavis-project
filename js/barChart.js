@@ -1,6 +1,8 @@
 class BarChart{
 
-    constructor(){
+    constructor(banks){
+
+        this.banks = banks;
 
         this.margin = {top: 20, right: 20, bottom: 30, left: 50};
         let divbarChart = d3.select("#bar-chart");
@@ -15,6 +17,7 @@ class BarChart{
 
     update(list_of_years){
 
+        console.log(this.banks);
         console.log(list_of_years);
 
     }

@@ -1,6 +1,4 @@
 
-barChart = new BarChart();
-
 d3.json("data/us-states.json", function (states) {
     d3.csv("data/joined_table.csv", function (error, banks) {
         for (let bank of banks) {
@@ -19,6 +17,7 @@ d3.json("data/us-states.json", function (states) {
             return a.efyear - b.efyear;
         });
         bmap = new Map(states, banks);
+        barChart = new BarChart(banks);
         lineChart = new LineChart(barChart, bmap, banks);
         lineChart.update('bank_amounts');
     });
