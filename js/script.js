@@ -9,10 +9,16 @@ d3.json("data/us-states.json", function (states) {
             bank.lng = +bank.lng;
         }
 
-        let lineChart = new LineChart(barChart, bmap, banks);
-        lineChart.update();
+        lineChart = new LineChart(barChart, bmap, banks);
+        lineChart.update('bank_amounts');
     });
 });
+
+function changeData() {
+
+    let choosedata = document.getElementById("dataset").value;
+    lineChart.update(choosedata);
+}
 
 
 
