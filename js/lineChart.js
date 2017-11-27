@@ -202,14 +202,14 @@ class LineChart{
                     return a - b;
                 });
                 thistable.bmap.update(thistable.whole_years);
-                thistable.barChart.update(thistable.whole_years);
+                thistable.barChart.update(thistable.whole_years, choosedata);
                 //console.log(thistable.whole_years);
             }else{
                 thistable.list_of_years.sort(function (a,b) {
                     return a - b;
                 });
                 thistable.bmap.update(thistable.list_of_years);
-                thistable.barChart.update(thistable.list_of_years);
+                thistable.barChart.update(thistable.list_of_years, choosedata);
             }
         });
 
