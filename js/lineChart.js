@@ -7,17 +7,7 @@ class LineChart{
         this.banks = banks;
         this.list_of_years = [];
         this.whole_years = [];
-        let bdate = "Effective Date";
-        //console.log(thistable.banks[bdate]);
-        for(let i = 0; i < this.banks.length; i++){
-            let parsedate = this.banks[i][bdate].split("/");
-            this.banks[i].efyear = +parsedate[2];
-        }
 
-        //sort by year
-        this.banks.sort(function (a,b) {
-            return a.efyear - b.efyear;
-        });
         //console.log(this.banks[0].efyear);
         for(let i =0; i < this.banks.length; i++){
             if(!this.whole_years.includes(this.banks[i].efyear)){
@@ -39,11 +29,11 @@ class LineChart{
     update(choosedata){
         //console.log(this.list_of_years);
         //this.bmap.update(this.banks);
-        this.barChart.update(this.banks);
+        //this.barChart.update(this.banks);
         let thistable = this;
 
         //console.log(choosedata);
-        //console.log(thistable.banks);
+        console.log(thistable.banks);
 
         //aggregation
         let aggrebanks = [];
@@ -207,10 +197,13 @@ class LineChart{
                 thistable.list_of_years = thistable.list_of_years.filter(function (t) { return t !== selected.datum().efyear });
             }
             //console.log(thistable.list_of_years);
-            thistable.bmap.update(thistable.list_of_years);
             if(thistable.list_of_years.length === 0){
                 thistable.bmap.update(thistable.whole_years);
+                thistable.barChart.update(thistable.whole_years);
                 //console.log(thistable.whole_years);
+            }else{
+                thistable.bmap.update(thistable.list_of_years);
+                thistable.barChart.update(thistable.list_of_years);
             }
         });
 

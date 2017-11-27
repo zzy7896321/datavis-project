@@ -13,8 +13,10 @@ class BarChart{
             .attr("height",this.svgHeight);
     }
 
-    update(banks){
-        //console.log(banks);
+    update(list_of_years){
+
+        console.log(list_of_years);
+
     }
 
 
