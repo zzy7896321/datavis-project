@@ -12,6 +12,10 @@
     stroke-width: 2;
 }
 
+.selectbox{
+    position: relative;
+    left: 750px;
+}
 
 .map-text {
     text-anchor: middle;

@@ -13,12 +13,15 @@
 <h1>FDIC Failed Banks from Oct 2000 to Dec 2016</h1>
 
 <div id="line-chart">
-    <select id="dataset" onchange="changeData()">
-        <option selected value="bank_amounts">bank amounts</option>
-        <option value="Estimated Loss">estimated loss</option>
-        <option value="Total Assets">total assets</option>
-        <option value="Total Deposits">total deposits</option>
-    </select>
+    <div class="selectbox">
+        <label>select model:</label>
+        <select id="dataset" onchange="changeData()">
+            <option selected value="bank_amounts">bank amounts</option>
+            <option value="Estimated Loss">estimated loss</option>
+            <option value="Total Assets">total assets</option>
+            <option value="Total Deposits">total deposits</option>
+        </select>
+    </div>
 </div>
 
 <div id="bar-chart">

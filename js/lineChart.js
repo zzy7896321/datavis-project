@@ -6,7 +6,7 @@ class LineChart{
         this.bmap = bmap;
         this.banks = banks;
 
-        this.margin = {top: 20, right: 20, bottom: 30, left: 50};
+        this.margin = {top: 20, right: 20, bottom: 30, left: 70};
         let divlineChart = d3.select("#line-chart");
         this.svgBounds = divlineChart.node().getBoundingClientRect();
         this.svgwidth = 1100 - this.margin.left - this.margin.right;
@@ -50,7 +50,7 @@ class LineChart{
                 if(choosedata === 'bank_amounts'){
                     aggrebanks[k].amount = j+1;
                 }else{
-                    console.log(thistable.banks[i][choosedata]);
+                    //console.log(thistable.banks[i][choosedata]);
                     aggrebanks[k][choosedata]= j + +thistable.banks[i][choosedata];
                 }
                 k++;
@@ -61,8 +61,8 @@ class LineChart{
                         j++;
                     }else{
                         j = j + +thistable.banks[i][choosedata];
-                        console.log(typeof j);
-                        console.log(thistable.banks[i][choosedata]);
+                        //console.log(typeof j);
+                        //console.log(thistable.banks[i][choosedata]);
                     }
                 }else{
                     aggrebanks.push({});
@@ -89,19 +89,30 @@ class LineChart{
             }
         }
         for(let i = 0; i < aggrebanks.length-1; i++){
-            aggrebanks[i].nextamount = aggrebanks[i+1].amount;
+            if(choosedata === 'bank_amounts'){
+                aggrebanks[i].nextval = aggrebanks[i+1].amount;
+            }else{
+                aggrebanks[i].nextval = aggrebanks[i+1][choosedata];
+            }
+
         }
-        aggrebanks[aggrebanks.length-1].nextamount = null;
+        aggrebanks[aggrebanks.length-1].nextval = null;
         console.log(aggrebanks);
 
         //scale
         this.xScale = d3.scaleLinear()
             .domain([(+d3.min(aggrebanks,d=>d.efyear)) - 1,(+d3.max(aggrebanks,d=>d.efyear)) + 1])
-            .range([40,thistable.svgwidth - 40]);
-        //if()
-        this.yScale = d3.scaleLinear()
-            .domain([0, d3.max(aggrebanks, d => d.amount)])
-            .range([thistable.svgHeight - this.margin.bottom, this.margin.top]).nice();
+            .range([70,thistable.svgwidth - 70]);
+        if(choosedata === 'bank_amounts'){
+            thistable.yScale = d3.scaleLinear()
+                .domain([0, d3.max(aggrebanks, d => d.amount)])
+                .range([thistable.svgHeight - this.margin.bottom, this.margin.top]).nice();
+        }else {
+            thistable.yScale = d3.scaleLinear()
+                .domain([0, d3.max(aggrebanks, d => d[choosedata])])
+                .range([thistable.svgHeight - this.margin.bottom, this.margin.top]).nice();
+        }
+
         //console.log(thistable.banks.length);
 
         //clear
@@ -121,7 +132,7 @@ class LineChart{
         let yAxis = d3.axisLeft();
         yAxis.scale(thistable.yScale);
         d3.select("#yAxis")
-            .attr("transform", "translate(40, 0)")
+            .attr("transform", "translate(70, 0)")
             .call(yAxis)
             .selectAll("text");
             //.attr("transform", "scale(1, -1) rotate(180)");
@@ -130,7 +141,7 @@ class LineChart{
         this.svg.append("g").attr("id","lines");
         d3.select("#lines").html("").selectAll("line").data(aggrebanks)
             .enter()
-            .filter(d => d.nextamount !== null)
+            .filter(d => d.nextval !== null)
             .append("line")
             .attr("x1",function (d) {
                 return thistable.xScale(d.efyear);
@@ -147,13 +158,14 @@ class LineChart{
                 return thistable.xScale(+d.efyear + 1);
             })
             .attr("y2",function (d) {
-                return thistable.yScale(d.nextamount);
+                //console.log(d.nextval);
+                return thistable.yScale(d.nextval);
             })
             .classed("lineChart",true);
         this.svg.append("g").attr("id","circles");
         d3.select("#circles").html("").selectAll("circle").data(aggrebanks)
             .enter()
-            .filter(d=> d.nextamount !== null)
+            .filter(d=> d.nextval !== null)
             .append("circle")
             .attr("r",5)
             .attr("cx",function (d) {
