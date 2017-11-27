@@ -1,7 +1,8 @@
 class Map {
-    constructor(states) {
+    constructor(states,banks) {
         //console.log(states);
         let thismap = this;
+        this.banks = banks;
 
         this.width = 1000;
         this.height = 550;
@@ -83,7 +84,7 @@ class Map {
         let thismap = this;
 
         let circles = this.markerLayer.selectAll("circle")
-            .data(banks);
+            .data(this.banks);
         circles.exit().remove();
         circles = circles.merge(circles.enter().append("circle"));
         

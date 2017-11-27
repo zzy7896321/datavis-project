@@ -17,6 +17,10 @@
     left: 750px;
 }
 
+.selected{
+    fill: red;
+}
+
 .map-text {
     text-anchor: middle;
 }

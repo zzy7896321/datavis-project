@@ -5,6 +5,25 @@ class LineChart{
         this.barChart = barChart;
         this.bmap = bmap;
         this.banks = banks;
+        this.list_of_years = [];
+        this.whole_years = [];
+        let bdate = "Effective Date";
+        //console.log(thistable.banks[bdate]);
+        for(let i = 0; i < this.banks.length; i++){
+            let parsedate = this.banks[i][bdate].split("/");
+            this.banks[i].efyear = +parsedate[2];
+        }
+
+        //sort by year
+        this.banks.sort(function (a,b) {
+            return a.efyear - b.efyear;
+        });
+        //console.log(this.banks[0].efyear);
+        for(let i =0; i < this.banks.length; i++){
+            if(!this.whole_years.includes(this.banks[i].efyear)){
+                this.whole_years.push(this.banks[i].efyear);
+            }
+        }
 
         this.margin = {top: 20, right: 20, bottom: 30, left: 70};
         let divlineChart = d3.select("#line-chart");
@@ -18,23 +37,13 @@ class LineChart{
     }
     
     update(choosedata){
-        this.bmap.update(this.banks);
+        //console.log(this.list_of_years);
+        //this.bmap.update(this.banks);
         this.barChart.update(this.banks);
         let thistable = this;
 
-        let bdate = "Effective Date";
-        //console.log(thistable.banks[bdate]);
-        for(let i = 0; i < thistable.banks.length; i++){
-            let parsedate = this.banks[i][bdate].split("/");
-            thistable.banks[i].efyear = parsedate[2];
-        }
-
-        //sort by year
-        thistable.banks.sort(function (a,b) {
-            return a.efyear - b.efyear;
-        });
-        console.log(choosedata);
-        console.log(thistable.banks);
+        //console.log(choosedata);
+        //console.log(thistable.banks);
 
         //aggregation
         let aggrebanks = [];
@@ -97,7 +106,7 @@ class LineChart{
 
         }
         aggrebanks[aggrebanks.length-1].nextval = null;
-        console.log(aggrebanks);
+        //console.log(aggrebanks);
 
         //scale
         this.xScale = d3.scaleLinear()
@@ -179,6 +188,32 @@ class LineChart{
                 }
 
             })
+            .attr("class",function (d) {
+                if(thistable.list_of_years.includes(d.efyear)){
+                    return "selected";
+                }
+            });
+
+        // response to click
+        //console.log(whole_years);
+        //this.bmap.update(whole_years);
+        d3.selectAll("#circles > circle").on("click",function () {
+            let selected = d3.select(this);
+            if(!thistable.list_of_years.includes(selected.datum().efyear)){
+                selected.classed("selected",true);
+                thistable.list_of_years.push(selected.datum().efyear);
+            }else {
+                selected.classed("selected",false);
+                thistable.list_of_years = thistable.list_of_years.filter(function (t) { return t !== selected.datum().efyear });
+            }
+            //console.log(thistable.list_of_years);
+            thistable.bmap.update(thistable.list_of_years);
+            if(thistable.list_of_years.length === 0){
+                thistable.bmap.update(thistable.whole_years);
+                //console.log(thistable.whole_years);
+            }
+        });
+
     }
 
 }
