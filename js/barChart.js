@@ -117,7 +117,7 @@ class BarChart{
             .enter()
             .append("rect")
             .attr("x",function (d,i) {
-                return thistable.xScale(i + i*50);
+                return thistable.xScale(i);
             })
             .attr("y",0)
             .attr("height",function (d) {
@@ -127,7 +127,7 @@ class BarChart{
                     return thistable.yScale(d[choosedata]);
                 }
             })
-            .attr("width",10);
+            .attr("width",20);
 
 
 
