@@ -1,8 +1,22 @@
 class Map {
-    constructor(states,banks) {
-        //console.log(states);
+    constructor(states, banks) {
         let thismap = this;
         this.banks = banks;
+        
+        let min_year = d3.min(this.banks, d => d.efyear);
+        this.min_year = min_year;
+        let max_year = d3.max(this.banks, d => d.efyear);
+        let num_years = max_year - min_year + 1;
+        this.year_banks = new Array(num_years);
+        for (let i = 0; i < num_years; ++i) {
+            this.year_banks[i] = [];
+        }
+
+        for (let bank of banks) {
+            this.year_banks[bank.efyear - min_year].push(bank);
+        }
+
+        //console.log(this.year_banks);
 
         this.width = 1000;
         this.height = 550;
@@ -77,14 +91,15 @@ class Map {
             .classed("map-border", true);
     }
 
-    update(banks) {
-
-        //console.log(banks);
+    update(years) {
 
         let thismap = this;
 
+        let banks = years.map(y => thismap.year_banks[y - thismap.min_year])
+            .reduce((x, y) => x.concat(y), []);
+
         let circles = this.markerLayer.selectAll("circle")
-            .data(this.banks);
+            .data(banks);
         circles.exit().remove();
         circles = circles.merge(circles.enter().append("circle"));
         
@@ -94,7 +109,7 @@ class Map {
         .attr("cy", function (d) {
             return thismap.projection([d.lng, d.lat])[1];
         })
-        .attr("r", 3)
+        .attr("r", 2)
         .style("fill", "red");
     }
 }
