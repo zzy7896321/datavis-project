@@ -24,6 +24,9 @@ class LineChart{
         this.svg = divlineChart.append("svg")
             .attr("width",this.svgwidth)
             .attr("height",this.svgHeight);
+
+        this.bmap.update(this.whole_years);
+        this.barChart.update(this.whole_years, "bank_amounts");
     }
     
     update(choosedata){
