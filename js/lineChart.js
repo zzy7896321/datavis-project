@@ -124,16 +124,16 @@ class LineChart{
         // Create the axes
         let xAxis = d3.axisTop();
         xAxis.scale(thistable.xScale);
-        this.svg.append("g").attr("id","xAxis");
-        this.svg.append("g").attr("id","yAxis");
-        d3.select("#xAxis")
+        this.svg.append("g").attr("id","linexAxis");
+        this.svg.append("g").attr("id","lineyAxis");
+        d3.select("#linexAxis")
             .attr("transform", "translate(0," + (+thistable.svgHeight-this.margin.bottom) + ")")
             .call(xAxis)
             .selectAll("text")
             .attr("transform", "translate(0,20)");
         let yAxis = d3.axisLeft();
         yAxis.scale(thistable.yScale);
-        d3.select("#yAxis")
+        d3.select("#lineyAxis")
             .attr("transform", "translate(70, 0)")
             .call(yAxis)
             .selectAll("text");
@@ -197,6 +197,7 @@ class LineChart{
                 thistable.list_of_years.push(selected.datum().efyear);
             }else {
                 selected.classed("selected",false);
+                selected.classed("selected",false);
                 thistable.list_of_years = thistable.list_of_years.filter(function (t) { return t !== selected.datum().efyear });
             }
             //console.log(thistable.list_of_years);
@@ -206,6 +207,7 @@ class LineChart{
                 });
                 thistable.bmap.update(thistable.whole_years);
                 thistable.barChart.update(thistable.whole_years, choosedata);
+
                 //console.log(thistable.whole_years);
             }else{
                 thistable.list_of_years.sort(function (a,b) {
@@ -213,8 +215,26 @@ class LineChart{
                 });
                 thistable.bmap.update(thistable.list_of_years);
                 thistable.barChart.update(thistable.list_of_years, choosedata);
+                //console.log("list");
             }
         });
+        if(thistable.list_of_years.length === 0){
+            thistable.whole_years.sort(function (a,b) {
+                return a - b;
+            });
+            thistable.bmap.update(thistable.whole_years);
+            thistable.barChart.update(thistable.whole_years, choosedata);
+            //console.log("whole");
+            //console.log(thistable.whole_years);
+        }else{
+            thistable.list_of_years.sort(function (a,b) {
+                return a - b;
+            });
+            thistable.bmap.update(thistable.list_of_years);
+            thistable.barChart.update(thistable.list_of_years, choosedata);
+            console.log("list");
+        }
+
 
     }
 

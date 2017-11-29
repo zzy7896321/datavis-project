@@ -97,29 +97,47 @@ class BarChart{
         //scale
 
         this.xScale = d3.scaleLinear()
-            .domain([0, 10])
+            .domain([0, 11])
             .range([70,thistable.svgwidth - 70]);
         if(choosedata === 'bank_amounts'){
             thistable.yScale = d3.scaleLinear()
                 .domain([0, d3.max(dataset, d => d.amount)])
-                .range([thistable.svgHeight - this.margin.bottom, this.margin.top]).nice();
+                .range([this.margin.top,thistable.svgHeight - this.margin.bottom]).nice();
         }else {
             thistable.yScale = d3.scaleLinear()
                 .domain([0, d3.max(dataset, d => d[choosedata])])
-                .range([thistable.svgHeight - this.margin.bottom, this.margin.top]).nice();
+                .range([this.margin.top, thistable.svgHeight - this.margin.bottom]).nice();
         }
 
         //create the axes
 
+        let xAxis = d3.axisTop();
+        xAxis.scale(thistable.xScale);
+        this.svg.append("g").attr("id","barxAxis");
+        this.svg.append("g").attr("id","baryAxis");
+        d3.select("#barxAxis")
+            .attr("transform", "translate(0," + (+thistable.svgHeight-this.margin.bottom) + ")")
+            .call(xAxis)
+            .selectAll("text")
+            .attr("transform", "translate(0,20)");
+        let yAxis = d3.axisLeft();
+        yAxis.scale(thistable.yScale);
+        d3.select("#baryAxis")
+            .attr("transform", "translate(70, 0)")
+            .call(yAxis)
+            .selectAll("text")
+            //.attr("transform", "translate(20,20) scale(1,-1) rotate(900)")
+            ;
+
         //create bars
-        this.svg.append("g").attr("id","bars");
+        this.svg.append("g").attr("id","bars").attr("transform","translate(0," + thistable.svgHeight +") scale(1,-1)");
         d3.select("#bars").html("").selectAll("rect").data(dataset)
             .enter()
             .append("rect")
             .attr("x",function (d,i) {
-                return thistable.xScale(i);
+                return thistable.xScale(i)+82;
             })
-            .attr("y",0)
+            .attr("y",30)
             .attr("height",function (d) {
                 if(choosedata === 'bank_amounts'){
                     return thistable.yScale(d.amount);
