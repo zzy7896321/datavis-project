@@ -7,7 +7,7 @@ class BarChart{
         this.margin = {top: 20, right: 20, bottom: 30, left: 50};
         let divbarChart = d3.select("#bar-chart");
         this.svgBounds = divbarChart.node().getBoundingClientRect();
-        this.svgwidth = this.svgBounds.width - this.margin.left - this.margin.right;
+        this.svgwidth = 1100 - this.margin.left - this.margin.right;
         this.svgHeight = 200;
 
         this.svg = divbarChart.append("svg")
@@ -97,7 +97,7 @@ class BarChart{
         //scale
 
         this.xScale = d3.scaleLinear()
-            .domain([0, 11])
+            .domain([0.5, 10.5])
             .range([70,thistable.svgwidth - 70]);
         if(choosedata === 'bank_amounts'){
             thistable.yScale = d3.scaleLinear()
@@ -123,10 +123,10 @@ class BarChart{
         let yAxis = d3.axisLeft();
         yAxis.scale(thistable.yScale);
         d3.select("#baryAxis")
-            .attr("transform", "translate(70, 0)")
+            .attr("transform", "translate(70, 190) scale(1,-1)")
             .call(yAxis)
             .selectAll("text")
-            //.attr("transform", "translate(20,20) scale(1,-1) rotate(900)")
+            .attr("transform", "translate(0,0) scale(1,-1)")
             ;
 
         //create bars
@@ -135,7 +135,7 @@ class BarChart{
             .enter()
             .append("rect")
             .attr("x",function (d,i) {
-                return thistable.xScale(i)+82;
+                return thistable.xScale(i)+80;
             })
             .attr("y",30)
             .attr("height",function (d) {
