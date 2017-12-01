@@ -32,6 +32,9 @@ class Map {
         this.markerLayer = this.svg.append("g")
             .attr("id", "markerLayer");
 
+        this.brushLayer = this.svg.append("g")
+            .attr("id", "brushLayer");
+
         this.projection = d3.geoAlbersUsa()
             .translate([this.width / 2, this.height / 2])
             .scale([1150]);
@@ -98,6 +101,11 @@ class Map {
         let banks = years.map(y => thismap.year_banks[y - thismap.min_year])
             .reduce((x, y) => x.concat(y), []);
 
+        let brush = d3.brush()
+            .on("end", function() {
+                console.log(d3.event.selection);
+            });
+
         let circles = this.markerLayer.selectAll("circle")
             .data(banks);
         circles.exit().remove();
@@ -109,7 +117,11 @@ class Map {
         .attr("cy", function (d) {
             return thismap.projection([d.lng, d.lat])[1];
         })
-        .attr("r", 2)
+        .attr("r", 2.5)
         .style("fill", "red");
+        
+        this.brushLayer.html("");
+
+        this.brushLayer.classed("brush", true).call(brush);
     }
 }

@@ -15,10 +15,10 @@ class LineChart{
             }
         }
 
-        this.margin = {top: 20, right: 20, bottom: 30, left: 70};
+        this.margin = {top: 20, right: 20, bottom: 30, left: 100};
         let divlineChart = d3.select("#line-chart");
-        this.svgBounds = divlineChart.node().getBoundingClientRect();
-        this.svgwidth = 1100 - this.margin.left - this.margin.right;
+        let svgBounds = divlineChart.node().getBoundingClientRect();
+        this.svgwidth = svgBounds.width;// - this.margin.left - this.margin.right;
         this.svgHeight = 200;
 
         this.svg = divlineChart.append("svg")
@@ -104,7 +104,7 @@ class LineChart{
         //scale
         this.xScale = d3.scaleLinear()
             .domain([(+d3.min(aggrebanks,d=>d.efyear)) - 1,(+d3.max(aggrebanks,d=>d.efyear)) + 1])
-            .range([70,thistable.svgwidth - 70]);
+            .range([this.margin.left, this.svgwidth - this.margin.right]);
         if(choosedata === 'bank_amounts'){
             thistable.yScale = d3.scaleLinear()
                 .domain([0, d3.max(aggrebanks, d => d.amount)])
@@ -122,6 +122,7 @@ class LineChart{
         //thistable.svg.select("#circles").html();
 
         // Create the axes
+        this.svg.html("");
         let xAxis = d3.axisTop();
         xAxis.scale(thistable.xScale);
         this.svg.append("g").attr("id","linexAxis");
@@ -134,7 +135,7 @@ class LineChart{
         let yAxis = d3.axisLeft();
         yAxis.scale(thistable.yScale);
         d3.select("#lineyAxis")
-            .attr("transform", "translate(70, 0)")
+            .attr("transform", "translate(" + thistable.margin.left + ", 0)")
             .call(yAxis)
             .selectAll("text");
             //.attr("transform", "scale(1, -1) rotate(180)");

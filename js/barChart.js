@@ -4,14 +4,14 @@ class BarChart{
 
         this.banks = banks;
 
-        this.margin = {top: 20, right: 20, bottom: 30, left: 50};
+        this.margin = {top: 40, right: 50, bottom: 30, left: 50};
         let divbarChart = d3.select("#bar-chart");
-        this.svgBounds = divbarChart.node().getBoundingClientRect();
-        this.svgwidth = 1100 - this.margin.left - this.margin.right;
-        this.svgHeight = 200;
+        let svgBounds = divbarChart.node().getBoundingClientRect();
+        this.svgWidth = svgBounds.width;
+        this.svgHeight = 220;
 
         this.svg = divbarChart.append("svg")
-            .attr("width",this.svgwidth)
+            .attr("width",this.svgWidth)
             .attr("height",this.svgHeight);
     }
 
@@ -98,19 +98,19 @@ class BarChart{
 
         this.xScale = d3.scaleLinear()
             .domain([0.5, 10.5])
-            .range([70,thistable.svgwidth - 70]);
+            .range([thistable.margin.left,thistable.svgWidth - thistable.margin.right]);
         if(choosedata === 'bank_amounts'){
             thistable.yScale = d3.scaleLinear()
                 .domain([0, d3.max(dataset, d => d.amount)])
-                .range([this.margin.top,thistable.svgHeight - this.margin.bottom]).nice();
+                .range([thistable.svgHeight - this.margin.bottom, thistable.margin.top]).nice();
         }else {
             thistable.yScale = d3.scaleLinear()
                 .domain([0, d3.max(dataset, d => d[choosedata])])
-                .range([this.margin.top, thistable.svgHeight - this.margin.bottom]).nice();
+                .range([thistable.svgHeight - this.margin.bottom, thistable.margin.top]).nice();
         }
 
         //create the axes
-
+        this.svg.html("");
         let xAxis = d3.axisTop();
         xAxis.scale(thistable.xScale);
         this.svg.append("g").attr("id","barxAxis");
@@ -123,11 +123,8 @@ class BarChart{
         let yAxis = d3.axisLeft();
         yAxis.scale(thistable.yScale);
         d3.select("#baryAxis")
-            .attr("transform", "translate(70, 190) scale(1,-1)")
-            .call(yAxis)
-            .selectAll("text")
-            .attr("transform", "translate(0,0) scale(1,-1)")
-            ;
+            .attr("transform", "translate(" + thistable.margin.left + ", 0)")
+            .call(yAxis);
 
         //create bars
         this.svg.append("g").attr("id","bars").attr("transform","translate(0," + thistable.svgHeight +") scale(1,-1)");
@@ -135,7 +132,7 @@ class BarChart{
             .enter()
             .append("rect")
             .attr("x",function (d,i) {
-                return thistable.xScale(i)+80;
+                return thistable.xScale(i + 1);
             })
             .attr("y",30)
             .attr("height",function (d) {

@@ -6,15 +6,25 @@
     <link rel="stylesheet" href="css/styles.css"/>
     <script src="https://d3js.org/d3.v4.js"</script>
     <script src="js/d3-tip/index.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+    <script src="https://d3js.org/d3-ease.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-timer.v1.min.js"></script>
+    <script src="https://d3js.org/d3-selection.v1.min.js"></script>
+    <script src="https://d3js.org/d3-transition.v1.min.js"></script>
+    <script src="https://d3js.org/d3-drag.v1.min.js"></script>
+    <script src="https://d3js.org/d3-brush.v1.min.js"></script>
 </head>
 
 <body>
 
 <h1>FDIC Failed Banks from Oct 2000 to Dec 2016</h1>
 
-<div id="line-chart">
+<div>
+<div id="line-chart" class="line-chart">
     <div class="selectbox">
-        <label>select model:</label>
+        <label>select y-axis</label>
         <select id="dataset" onchange="changeData()">
             <option selected value="bank_amounts">bank amounts</option>
             <option value="Estimated Loss">estimated loss</option>
@@ -24,11 +34,17 @@
     </div>
 </div>
 
-<div id="bar-chart">
+<div id="bar-chart" class="bar-chart">
+</div>
 </div>
 
+<div>
 <div id="map">
 
+</div>
+
+<div id="bank-list">
+</div>
 </div>
 
 
