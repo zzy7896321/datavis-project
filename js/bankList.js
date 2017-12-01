@@ -14,7 +14,7 @@ class BankList {
     update(banks) {
         let thislist = this;
         this.clear();
-
+        
         this.list.selectAll("li").data(banks).enter()
             .append("li")
             .text(bank => bank["Institution Name"])
@@ -22,10 +22,14 @@ class BankList {
             .on("click", function () {
                 let bank_li = d3.select(this);
                 let bank = bank_li.datum();
-                thislist.bank_details.html("");
-                thislist.bank_details.append("h3")
-                    .html(bank["Institution Name"]);
-                this
+                thislist.bank_details.html(`
+                <h3>${bank["Institution Name"]}</h3>
+                <span>Effective Date: ${bank["Effective Date"]}</span><br>
+                <span>Total Assets: ${bank["Total Assets"]}</span><br>
+                <span>Total Deposites: ${bank["Total Deposits"]}</span><br>
+                <span>Estimated Loss: ${bank["Estimated Loss"]}</span><br>
+                <span>Acquirer: ${bank["Acquiring Institution"]}</span>
+                `);
             });
 
     }

@@ -137,7 +137,7 @@ class BarChart{
             .call(xAxis)
             .selectAll("text")
             .classed("bar-chart-text", true)
-            .attr("transform", "translate(0, 20) rotate(30)");
+            .attr("transform", "translate(0, 20) rotate(25)");
 
         let yAxis = d3.axisLeft();
         yAxis.scale(thistable.yScale);

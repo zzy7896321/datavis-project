@@ -21,6 +21,8 @@ class LineChart{
         this.svgwidth = svgBounds.width;// - this.margin.left - this.margin.right;
         this.svgHeight = 200;
 
+        console.log(this.svgwidth);
+
         this.svg = divlineChart.append("svg")
             .attr("width",this.svgwidth)
             .attr("height",this.svgHeight);

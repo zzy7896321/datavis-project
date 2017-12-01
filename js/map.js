@@ -15,12 +15,11 @@ class Map {
         this.max_year = d3.max(banks, d => d.efyear);
         this.year_predicate = new Array(this.max_year - this.min_year + 1);
 
-        //console.log(this.year_banks);
-
-        this.width = 1000;
+        let div = d3.select("#map");
+        let svgBounds = div.node().getBoundingClientRect();
+        this.width = svgBounds.width;
         this.height = 550;
 
-        let div = d3.select("#map");
         this.svg = div.append("svg")
             .attr("width", this.width)
             .attr("height", this.height);
@@ -92,44 +91,14 @@ class Map {
             .attr("d", path)
             .classed("map-border", true);
 
+        this.brushSelection = null;
+
         let brush = d3.brush()
             .on("end", function() {
-                console.log(d3.event.selection);
                 d3.selectAll(".circle-selected")
                     .classed("circle-selected", false);
-                if (d3.event.selection != null) {
-                    let x1 = d3.event.selection[0][0];
-                    let y1 = d3.event.selection[0][1];
-                    let x2 = d3.event.selection[1][0];
-                    let y2 = d3.event.selection[1][1];
-
-                    thismap.markerLayer.selectAll("circle")
-                        .filter(function (d) {
-                            let coord = thismap.projection([
-                                d.values[0].lng,
-                                d.values[0].lat]);
-                            return thismap.in_range(
-                                coord[0], coord[1],
-                                x1, y1, x2, y2);
-                        })
-                        .classed("circle-selected", true);
-
-                    let selected_banks = banks.filter(
-                    function (bank) {
-                        if (!thismap.in_years_selected(bank.efyear)) {
-                            return false;
-                        }
-                        let coord = thismap.projection([
-                            bank.lng,
-                            bank.lat]);
-                        return thismap.in_range(
-                            coord[0], coord[1],
-                            x1, y1, x2, y2);
-                    });
-                    thismap.bankList.update(selected_banks);
-                } else {
-                    thismap.bankList.clear();
-                }
+                thismap.brushSelection = d3.event.selection;
+                thismap.refreshBrushSelection();
             });
 
         this.brushLayer.html("");
@@ -149,8 +118,8 @@ class Map {
 
         let thismap = this;
 
-        for (let i = 0; i < this.year_predicate; ++i) {
-            this.year_predicat[i] = false;
+        for (let i = 0; i < this.year_predicate.length; ++i) {
+            this.year_predicate[i] = false;
         }
         for (let year of years) {
             this.year_predicate[year - this.min_year] = true;
@@ -171,6 +140,50 @@ class Map {
         .attr("cy", function (d) {
             return thismap.projection([d.values[0].lng, d.values[0].lat])[1];
         })
-        .classed("circle", true);
+        .classed("circle", true)
+        .classed("circle-selected", false);
+
+        this.refreshBrushSelection();
+    }
+
+    refreshBrushSelection() {
+        let thismap = this;
+        console.log(this.brushSelection);
+
+        if (this.brushSelection != null) {
+            let x1 = this.brushSelection[0][0];
+            let y1 = this.brushSelection[0][1];
+            let x2 = this.brushSelection[1][0];
+            let y2 = this.brushSelection[1][1];
+
+            this.markerLayer.selectAll("circle")
+                .filter(function (d) {
+                    let coord = thismap.projection([
+                        d.values[0].lng,
+                        d.values[0].lat]);
+                    return thismap.in_range(
+                        coord[0], coord[1],
+                        x1, y1, x2, y2);
+                })
+                .classed("circle-selected", true);
+
+            let selected_banks = this.banks.filter(
+            function (bank) {
+                if (!thismap.in_years_selected(bank.efyear)) {
+                    return false;
+                }
+                let coord = thismap.projection([
+                    bank.lng,
+                    bank.lat]);
+                return thismap.in_range(
+                    coord[0], coord[1],
+                    x1, y1, x2, y2);
+            });
+            this.bankList.update(selected_banks);
+        } else {
+            this.bankList.update(this.banks.filter(bank =>
+                thismap.in_years_selected(bank.efyear)
+            ));
+        }
     }
 }
