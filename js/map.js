@@ -1,20 +1,19 @@
 class Map {
     constructor(states, banks) {
         let thismap = this;
-        this.banks = banks;
         
-        let min_year = d3.min(this.banks, d => d.efyear);
-        this.min_year = min_year;
-        let max_year = d3.max(this.banks, d => d.efyear);
-        let num_years = max_year - min_year + 1;
-        this.year_banks = new Array(num_years);
-        for (let i = 0; i < num_years; ++i) {
-            this.year_banks[i] = [];
-        }
+        this.bankList = new BankList(this);
+        
+        this.banks = banks;
+        this.banks_by_loc = d3.nest()
+            .key(d => d.Location)
+            .entries(banks);
 
-        for (let bank of banks) {
-            this.year_banks[bank.efyear - min_year].push(bank);
-        }
+        console.log(this.banks_by_loc);
+
+        this.min_year = d3.min(banks, d => d.efyear);
+        this.max_year = d3.max(banks, d => d.efyear);
+        this.year_predicate = new Array(this.max_year - this.min_year + 1);
 
         //console.log(this.year_banks);
 
@@ -92,36 +91,86 @@ class Map {
             .append("path")
             .attr("d", path)
             .classed("map-border", true);
+
+        let brush = d3.brush()
+            .on("end", function() {
+                console.log(d3.event.selection);
+                d3.selectAll(".circle-selected")
+                    .classed("circle-selected", false);
+                if (d3.event.selection != null) {
+                    let x1 = d3.event.selection[0][0];
+                    let y1 = d3.event.selection[0][1];
+                    let x2 = d3.event.selection[1][0];
+                    let y2 = d3.event.selection[1][1];
+
+                    thismap.markerLayer.selectAll("circle")
+                        .filter(function (d) {
+                            let coord = thismap.projection([
+                                d.values[0].lng,
+                                d.values[0].lat]);
+                            return thismap.in_range(
+                                coord[0], coord[1],
+                                x1, y1, x2, y2);
+                        })
+                        .classed("circle-selected", true);
+
+                    let selected_banks = banks.filter(
+                    function (bank) {
+                        if (!thismap.in_years_selected(bank.efyear)) {
+                            return false;
+                        }
+                        let coord = thismap.projection([
+                            bank.lng,
+                            bank.lat]);
+                        return thismap.in_range(
+                            coord[0], coord[1],
+                            x1, y1, x2, y2);
+                    });
+                    thismap.bankList.update(selected_banks);
+                } else {
+                    thismap.bankList.clear();
+                }
+            });
+
+        this.brushLayer.html("");
+
+        this.brushLayer.classed("brush", true).call(brush);
+    }
+
+    in_years_selected(year) {
+        return this.year_predicate[year - this.min_year];
+    }
+
+    in_range(x, y, x1, y1, x2, y2) {
+        return x >= x1 && x <= x2 && y >= y1 && y <= y2;
     }
 
     update(years) {
 
         let thismap = this;
 
-        let banks = years.map(y => thismap.year_banks[y - thismap.min_year])
-            .reduce((x, y) => x.concat(y), []);
-
-        let brush = d3.brush()
-            .on("end", function() {
-                console.log(d3.event.selection);
-            });
+        for (let i = 0; i < this.year_predicate; ++i) {
+            this.year_predicat[i] = false;
+        }
+        for (let year of years) {
+            this.year_predicate[year - this.min_year] = true;
+        }
 
         let circles = this.markerLayer.selectAll("circle")
-            .data(banks);
+            .data(this.banks_by_loc.filter( d => 
+                -1 != d.values.findIndex( bank =>
+                    thismap.in_years_selected(bank.efyear)
+                )
+            ));
         circles.exit().remove();
         circles = circles.merge(circles.enter().append("circle"));
         
         circles.attr("cx", function(d) {
-            return thismap.projection([d.lng, d.lat])[0];
+            return thismap.projection([d.values[0].lng, d.values[0].lat])[0];
         })
         .attr("cy", function (d) {
-            return thismap.projection([d.lng, d.lat])[1];
+            return thismap.projection([d.values[0].lng, d.values[0].lat])[1];
         })
-        .attr("r", 2.5)
-        .style("fill", "red");
-        
-        this.brushLayer.html("");
-
-        this.brushLayer.classed("brush", true).call(brush);
+        .classed("circle", true);
     }
 }

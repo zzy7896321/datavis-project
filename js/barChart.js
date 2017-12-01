@@ -4,11 +4,14 @@ class BarChart{
 
         this.banks = banks;
 
-        this.margin = {top: 40, right: 50, bottom: 30, left: 50};
+        this.margin = {top: 40, right: 50, bottom: 120, left: 70};
         let divbarChart = d3.select("#bar-chart");
         let svgBounds = divbarChart.node().getBoundingClientRect();
         this.svgWidth = svgBounds.width;
-        this.svgHeight = 220;
+        this.svgHeight = 310;
+        this.barWidth = 20;
+        this.barPadding = 5;
+        this.barSlotWidth = this.barWidth + 2 * this.barPadding;
 
         this.svg = divbarChart.append("svg")
             .attr("width",this.svgWidth)
@@ -18,7 +21,7 @@ class BarChart{
     update(list_of_years, choosedata){
 
         //help understand
-        console.log(this.banks);
+        //console.log(this.banks);
         //console.log(choosedata);
         //console.log(list_of_years);
 
@@ -75,7 +78,7 @@ class BarChart{
             }
 
         });
-        console.log(acbanks);
+        //console.log(acbanks);
         let dataset = [];
         let len = 0;
         if(acbanks.length >= 10){
@@ -92,21 +95,35 @@ class BarChart{
                 dataset[k][choosedata] = acbanks[k][choosedata];
             }
         }
-        console.log(dataset);
+        //console.log(dataset);
+        let banknames = dataset.map(d => d.acbank_name);
+        banknames.splice(0, 0, "");
+        banknames.splice(banknames.length, 0, "");
+        let xPosition = [thistable.margin.left];
+        for (let i = 0; i < dataset.length; ++i) {
+            xPosition.push(thistable.margin.left + 
+                + this.barSlotWidth * (i + 0.5));
+        }
+        xPosition.push(thistable.margin.left +
+                this.barSlotWidth * (dataset.length + 0.5));
 
         //scale
 
-        this.xScale = d3.scaleLinear()
-            .domain([0.5, 10.5])
-            .range([thistable.margin.left,thistable.svgWidth - thistable.margin.right]);
+        this.xScale = d3.scaleOrdinal()
+            .domain(banknames)
+            .range(xPosition);
         if(choosedata === 'bank_amounts'){
             thistable.yScale = d3.scaleLinear()
                 .domain([0, d3.max(dataset, d => d.amount)])
-                .range([thistable.svgHeight - this.margin.bottom, thistable.margin.top]).nice();
+                .range([0, 
+                        thistable.svgHeight - thistable.margin.bottom - thistable.margin.top
+                ]).nice();
         }else {
             thistable.yScale = d3.scaleLinear()
                 .domain([0, d3.max(dataset, d => d[choosedata])])
-                .range([thistable.svgHeight - this.margin.bottom, thistable.margin.top]).nice();
+                .range([0,
+                        thistable.svgHeight - thistable.margin.bottom - thistable.margin.top
+                ]).nice();
         }
 
         //create the axes
@@ -119,22 +136,29 @@ class BarChart{
             .attr("transform", "translate(0," + (+thistable.svgHeight-this.margin.bottom) + ")")
             .call(xAxis)
             .selectAll("text")
-            .attr("transform", "translate(0,20)");
+            .classed("bar-chart-text", true)
+            .attr("transform", "translate(0, 20) rotate(30)");
+
         let yAxis = d3.axisLeft();
         yAxis.scale(thistable.yScale);
         d3.select("#baryAxis")
-            .attr("transform", "translate(" + thistable.margin.left + ", 0)")
-            .call(yAxis);
+            .attr("transform", "translate("
+                    + thistable.margin.left + ", "
+                    + (thistable.svgHeight - thistable.margin.bottom + 1) // a mysterious 1
+                    + "), scale(1, -1)")
+            .call(yAxis)
+            .selectAll("text")
+            .attr("transform", "scale(1, -1)");
 
         //create bars
         this.svg.append("g").attr("id","bars").attr("transform","translate(0," + thistable.svgHeight +") scale(1,-1)");
         d3.select("#bars").html("").selectAll("rect").data(dataset)
             .enter()
             .append("rect")
-            .attr("x",function (d,i) {
-                return thistable.xScale(i + 1);
+            .attr("x",function (d) {
+                return thistable.xScale(d.acbank_name);
             })
-            .attr("y",30)
+            .attr("y",this.margin.bottom)
             .attr("height",function (d) {
                 if(choosedata === 'bank_amounts'){
                     return thistable.yScale(d.amount);
@@ -144,11 +168,6 @@ class BarChart{
             })
             .attr("width",20);
 
-
-
-
     }
-
-
 
 }

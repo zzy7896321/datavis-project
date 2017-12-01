@@ -15,14 +15,21 @@
     <script src="https://d3js.org/d3-transition.v1.min.js"></script>
     <script src="https://d3js.org/d3-drag.v1.min.js"></script>
     <script src="https://d3js.org/d3-brush.v1.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
 
 <body>
 
-<h1>FDIC Failed Banks from Oct 2000 to Dec 2016</h1>
+<div class="container">
+<div class="row">
+    <div class="col-xl">
+        <h1>FDIC Failed Banks from Oct 2000 to Dec 2016</h1>
+    </div>
+</div>
 
-<div>
-<div id="line-chart" class="line-chart">
+<div class="row">
+<div id="line-chart" class="col-xl-9">
     <div class="selectbox">
         <label>select y-axis</label>
         <select id="dataset" onchange="changeData()">
@@ -34,20 +41,35 @@
     </div>
 </div>
 
-<div id="bar-chart" class="bar-chart">
+<div id="bar-chart" class="col-xl-3">
 </div>
 </div>
 
-<div>
+<div class="row-div">
 <div id="map">
 
 </div>
 
-<div id="bank-list">
+<div id="bank-text-div">
+    <div id="bank-details">
+        <h3></h3>
+    </div>
+    <div id="bank-list-div">
+        <h2>Selected banks</h2>
+        <ul id="bank-list">
+        </ul>
+    </div>
 </div>
 </div>
 
+</div>
 
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+<script src="js/bankList.js"></script>
 <script src="js/map.js"></script>
 <script src="js/barChart.js"></script>
 <script src="js/lineChart.js"></script>
