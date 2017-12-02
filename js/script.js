@@ -29,5 +29,3 @@ function changeData() {
     lineChart.update(choosedata);
 }
 
-
-

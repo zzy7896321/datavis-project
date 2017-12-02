@@ -56,7 +56,7 @@
 </div>
 
 <div class=row>
-    <div style="margin-bottom: 0px; margin-left: 100px;">
+    <div style="margin-bottom: 0px; margin-left: 100px;" class="col-md-7 col-xl-7">
         <div class="pull-left form-group">
             <select class="form-control" id="dataset" onchange="changeData()">
                 <option selected value="bank_amounts">bank amounts</option>
@@ -65,8 +65,8 @@
                 <option value="Total Deposits">total deposits</option>
             </select>
         </div>
-        <div class="pull-left form-groups">
-            <button class="btn btn-primary" id="reset-button">Reset</button>         
+        <div class="pull-right form-group">
+            <button class="btn btn-default" id="reset-button">Reset Selection</button>         
         </div>
     </div>
 </div>
@@ -87,11 +87,18 @@
 <div id="bank-text-div" class="col-md-2 col-xl-2">
     <div id="bank-details">
     </div>
-    <div class=form-group">
-        <input class="form-control" type=search 
+
+    <div class="input-group">
+        <input class="form-control" type=search
         placeholder="search for banks" id="search-box">
+        <span class="input-group-btn">
+            <button class="btn btn-default" id="clear-button"
+                type=button>Clear</button>
+        </span>
     </div>
+
     <div id="bank-list-div">
+        <span class="bank-list-text" id="bank-list-expand"></span>
         <ul id="bank-list">
         </ul>
     </div>

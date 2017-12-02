@@ -136,6 +136,11 @@ class Map {
                 thismap.update();
             }, 300);
         });
+
+        d3.select("#clear-button").on("click", function () {
+            thismap.searchBox.node().value = "";
+            thismap.update();
+        });
     }
 
     in_years_selected(year) {
