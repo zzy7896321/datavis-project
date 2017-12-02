@@ -4,11 +4,11 @@ class BarChart{
 
         this.banks = banks;
 
-        this.margin = {top: 40, right: 50, bottom: 150, left: 70};
+        this.margin = {top: 5, right: 50, bottom: 150, left: 70};
         let divbarChart = d3.select("#bar-chart");
         let svgBounds = divbarChart.node().getBoundingClientRect();
         this.svgWidth = svgBounds.width;
-        this.svgHeight = 360;
+        this.svgHeight = 325;
         this.barWidth = 20;
         this.barPadding = 5;
         this.barSlotWidth = this.barWidth + 2 * this.barPadding;
@@ -98,14 +98,16 @@ class BarChart{
         //console.log(dataset);
         let banknames = dataset.map(d => d.acbank_name);
         banknames.splice(0, 0, "");
-        banknames.splice(banknames.length, 0, "");
         let xPosition = [thistable.margin.left];
         for (let i = 0; i < dataset.length; ++i) {
             xPosition.push(thistable.margin.left + 
                 + this.barSlotWidth * (i + 0.5));
         }
-        xPosition.push(thistable.margin.left +
-                this.barSlotWidth * (dataset.length + 0.5));
+        for (let i = dataset.length; i <= 10; ++i) {
+            banknames.push("");    
+            xPosition.push(thistable.margin.left +
+                    this.barSlotWidth * (i + 0.5));
+        }
 
         //scale
 

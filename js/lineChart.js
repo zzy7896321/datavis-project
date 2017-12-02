@@ -1,12 +1,14 @@
 class LineChart{
 
     constructor(barChart, bmap, banks){
+        let thistable = this;
 
         this.barChart = barChart;
         this.bmap = bmap;
         this.banks = banks;
         this.list_of_years = [];
         this.whole_years = [];
+        this.choosedata = "bank_amounts";
 
         //console.log(this.banks[0].efyear);
         for(let i =0; i < this.banks.length; i++){
@@ -27,6 +29,13 @@ class LineChart{
 
         this.bmap.update(this.whole_years);
         this.barChart.update(this.whole_years, "bank_amounts");
+
+        d3.select("#reset-button").on("click", function () {
+            thistable.list_of_years = [];
+            d3.selectAll(".selected").classed("selected", false);
+            thistable.bmap.update(thistable.whole_years);
+            thistable.barChart.update(thistable.whole_years, thistable.choosedata);
+        });
     }
     
     update(choosedata){
@@ -36,6 +45,7 @@ class LineChart{
         let thistable = this;
 
         //console.log(choosedata);
+        this.choosedata = choosedata;
         console.log(thistable.banks);
 
         //aggregation
@@ -196,7 +206,6 @@ class LineChart{
                 selected.classed("selected",true);
                 thistable.list_of_years.push(selected.datum().efyear);
             }else {
-                selected.classed("selected",false);
                 selected.classed("selected",false);
                 thistable.list_of_years = thistable.list_of_years.filter(function (t) { return t !== selected.datum().efyear });
             }
