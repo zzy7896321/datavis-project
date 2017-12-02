@@ -23,7 +23,7 @@ class BankList {
                 let bank_li = d3.select(this);
                 let bank = bank_li.datum();
                 thislist.bank_details.html(`
-                <h3>${bank["Institution Name"]}</h3>
+                <h4>${bank["Institution Name"]}</h4>
                 <span>Location: ${bank["Location"]}</span><br>
                 <span>Effective Date: ${bank["Effective Date"]}</span><br>
                 <span>Total Assets: ${bank["Total Assets"]}</span><br>

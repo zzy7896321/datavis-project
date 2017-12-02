@@ -8,7 +8,8 @@ d3.json("data/us-states.json", function (states) {
             let parsedate = banks[i][bdate].split("/");
             banks[i].efyear = +parsedate[2];
             banks[i].lowerName = banks[i]["Institution Name"].toLowerCase();
-            banks[i].locationId = banks[i]["Location"].replace(", ", "-");
+            banks[i].locationId = banks[i]["Location"].replace(", ", "-")
+                .replace(" ", "_");
         }
 
         //sort by year
