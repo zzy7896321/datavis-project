@@ -1,8 +1,6 @@
 class BarChart{
 
-    constructor(banks){
-
-        this.banks = banks;
+    constructor(){
 
         this.margin = {top: 10, right: 50, bottom: 130, left: 70};
         let divbarChart = d3.select("#bar-chart");
@@ -18,16 +16,16 @@ class BarChart{
             .attr("height",this.svgHeight);
     }
 
-    update(list_of_years, choosedata){
+    update(banks, choosedata){
 
         //help understand
         //console.log(this.banks);
         //console.log(choosedata);
-        //console.log(list_of_years);
 
         //init
         let thistable = this;
-
+        
+        this.banks = banks;
         //operate data
 
         let acbanks = [];
@@ -35,39 +33,35 @@ class BarChart{
         let j=1;
         let acname = "Acquiring Institution";
         for(i = 0; i< thistable.banks.length; i++){
-            if(list_of_years.includes(thistable.banks[i].efyear)){
-                acbanks.push({});
-                acbanks[0].acbank_name = thistable.banks[i][acname];
-                if(choosedata === 'bank_amounts'){
-                    acbanks[0].amount = 1;
-                }else {
-                    acbanks[0][choosedata] = +thistable.banks[i][choosedata];
-                }
-                break;
+            acbanks.push({});
+            acbanks[0].acbank_name = thistable.banks[i][acname];
+            if(choosedata === 'bank_amounts'){
+                acbanks[0].amount = 1;
+            }else {
+                acbanks[0][choosedata] = +thistable.banks[i][choosedata];
             }
+            break;
         }
         for(let k = i+1; k < thistable.banks.length; k++){
-            if(list_of_years.includes(thistable.banks[k].efyear)){
-                let check = acbanks.some(function (t) { return t.acbank_name === thistable.banks[k][acname]; });
-                //console.log(check);
-                if(check){
-                    let index = acbanks.findIndex(d => d.acbank_name === thistable.banks[k][acname]);
-                    if(choosedata === 'bank_amounts'){
-                        acbanks[index].amount ++;
-                    }else{
-                        acbanks[index][choosedata] = acbanks[index][choosedata] + +thistable.banks[k][choosedata];
-                    }
-
-                }else {
-                    acbanks.push({});
-                    acbanks[j].acbank_name = thistable.banks[k][acname];
-                    if(choosedata === 'bank_amounts'){
-                        acbanks[j].amount = 1;
-                    }else {
-                        acbanks[j][choosedata] = +thistable.banks[k][choosedata];
-                    }
-                    j++
+            let check = acbanks.some(function (t) { return t.acbank_name === thistable.banks[k][acname]; });
+            //console.log(check);
+            if(check){
+                let index = acbanks.findIndex(d => d.acbank_name === thistable.banks[k][acname]);
+                if(choosedata === 'bank_amounts'){
+                    acbanks[index].amount ++;
+                }else{
+                    acbanks[index][choosedata] = acbanks[index][choosedata] + +thistable.banks[k][choosedata];
                 }
+
+            }else {
+                acbanks.push({});
+                acbanks[j].acbank_name = thistable.banks[k][acname];
+                if(choosedata === 'bank_amounts'){
+                    acbanks[j].amount = 1;
+                }else {
+                    acbanks[j][choosedata] = +thistable.banks[k][choosedata];
+                }
+                j++
             }
         }
         acbanks.sort(function (a,b) {

@@ -16,9 +16,9 @@ d3.json("data/us-states.json", function (states) {
         banks.sort(function (a,b) {
             return a.efyear - b.efyear;
         });
-        bmap = new Map(states, banks);
         barChart = new BarChart(banks);
-        lineChart = new LineChart(barChart, bmap, banks);
+        bmap = new Map(states, banks, barChart);
+        lineChart = new LineChart(bmap, banks);
         lineChart.update('bank_amounts');
     });
 });

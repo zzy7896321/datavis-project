@@ -1,9 +1,9 @@
 class LineChart{
 
-    constructor(barChart, bmap, banks){
+    constructor(bmap, banks){
         let thistable = this;
 
-        this.barChart = barChart;
+        //this.barChart = barChart;
         this.bmap = bmap;
         this.banks = banks;
         this.list_of_years = [];
@@ -27,14 +27,14 @@ class LineChart{
             .attr("width",this.svgwidth)
             .attr("height",this.svgHeight);
 
-        this.bmap.update(this.whole_years);
-        this.barChart.update(this.whole_years, "bank_amounts");
+        this.bmap.update(this.whole_years, this.choosedata);
+        //this.barChart.update(this.whole_years, "bank_amounts");
 
         d3.select("#reset-button").on("click", function () {
             thistable.list_of_years = [];
             d3.selectAll(".selected").classed("selected", false);
-            thistable.bmap.update(thistable.whole_years);
-            thistable.barChart.update(thistable.whole_years, thistable.choosedata);
+            thistable.bmap.update(thistable.whole_years, thistable.choosedata);
+        //    thistable.barChart.update(thistable.whole_years, thistable.choosedata);
         });
     }
     
@@ -218,16 +218,16 @@ class LineChart{
                 thistable.whole_years.sort(function (a,b) {
                     return a - b;
                 });
-                thistable.bmap.update(thistable.whole_years);
-                thistable.barChart.update(thistable.whole_years, choosedata);
+                thistable.bmap.update(thistable.whole_years, choosedata);
+                //thistable.barChart.update(thistable.whole_years, choosedata);
 
                 //console.log(thistable.whole_years);
             }else{
                 thistable.list_of_years.sort(function (a,b) {
                     return a - b;
                 });
-                thistable.bmap.update(thistable.list_of_years);
-                thistable.barChart.update(thistable.list_of_years, choosedata);
+                thistable.bmap.update(thistable.list_of_years, choosedata);
+                //thistable.barChart.update(thistable.list_of_years, choosedata);
                 //console.log("list");
             }
         });
@@ -235,16 +235,16 @@ class LineChart{
             thistable.whole_years.sort(function (a,b) {
                 return a - b;
             });
-            thistable.bmap.update(thistable.whole_years);
-            thistable.barChart.update(thistable.whole_years, choosedata);
+            thistable.bmap.update(thistable.whole_years, choosedata);
+            //thistable.barChart.update(thistable.whole_years, choosedata);
             //console.log("whole");
             //console.log(thistable.whole_years);
         }else{
             thistable.list_of_years.sort(function (a,b) {
                 return a - b;
             });
-            thistable.bmap.update(thistable.list_of_years);
-            thistable.barChart.update(thistable.list_of_years, choosedata);
+            thistable.bmap.update(thistable.list_of_years, choosedata);
+            //thistable.barChart.update(thistable.list_of_years, choosedata);
             console.log("list");
         }
 

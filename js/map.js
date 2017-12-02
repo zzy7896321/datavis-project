@@ -1,7 +1,8 @@
 class Map {
-    constructor(states, banks) {
+    constructor(states, banks, barChart) {
         let thismap = this;
         
+        this.barChart = barChart;
         this.bankList = new BankList(this);
         
         this.banks = banks;
@@ -151,7 +152,7 @@ class Map {
         return x >= x1 && x <= x2 && y >= y1 && y <= y2;
     }
 
-    update(years) {
+    update(years, choosedata) {
         let thismap = this;
         
         if (years !== undefined) {
@@ -161,6 +162,7 @@ class Map {
             for (let year of years) {
                 this.year_predicate[year - this.min_year] = true;
             }
+            this.choosedata = choosedata;
         }
 
         let searchText = this.searchBox.node().value;
@@ -205,6 +207,7 @@ class Map {
             ).raise();
 
         this.bankList.update(selected_banks);
+        this.barChart.update(selected_banks, this.choosedata);
     }
 
     markDetailedBank(bank) {
