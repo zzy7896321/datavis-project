@@ -134,11 +134,11 @@
     "@grid-gutter-width": "15px",
     "@grid-float-breakpoint": "@screen-sm-min",
     "@grid-float-breakpoint-max": "(@grid-float-breakpoint - 1)",
-    "@container-tablet": "(1600px + @grid-gutter-width)",
+    "@container-tablet": "(1700px + @grid-gutter-width)",
     "@container-sm": "@container-tablet",
-    "@container-desktop": "(1600px + @grid-gutter-width)",
+    "@container-desktop": "(1700px + @grid-gutter-width)",
     "@container-md": "@container-desktop",
-    "@container-large-desktop": "(1600px + @grid-gutter-width)",
+    "@container-large-desktop": "(1700px + @grid-gutter-width)",
     "@container-lg": "@container-large-desktop",
     "@navbar-height": "50px",
     "@navbar-margin-bottom": "@line-height-computed",
@@ -431,5 +431,5 @@
     "scrollspy.js",
     "transition.js"
   ],
-  "customizerUrl": "http://getbootstrap.com/docs/3.3/customize/?id=378510dc271d061e04c4d8825be55a15"
+  "customizerUrl": "http://getbootstrap.com/docs/3.3/customize/?id=f7536bcea8dbb957b4670d6d12ee22d3"
 }

@@ -1,15 +1,14 @@
 
 d3.json("data/us-states.json", function (states) {
     d3.csv("data/joined_table.csv", function (error, banks) {
-        for (let bank of banks) {
-            bank.lat = +bank.lat;
-            bank.lng = +bank.lng;
-        }
         let bdate = "Effective Date";
-        //console.log(thistable.banks[bdate]);
         for(let i = 0; i < banks.length; i++){
+            banks[i].lat = +banks[i].lat;
+            banks[i].lng = +banks[i].lng;
             let parsedate = banks[i][bdate].split("/");
             banks[i].efyear = +parsedate[2];
+            banks[i].lowerName = banks[i]["Institution Name"].toLowerCase();
+            banks[i].locationId = banks[i]["Location"].replace(", ", "-");
         }
 
         //sort by year

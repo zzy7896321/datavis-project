@@ -24,12 +24,15 @@ class BankList {
                 let bank = bank_li.datum();
                 thislist.bank_details.html(`
                 <h3>${bank["Institution Name"]}</h3>
+                <span>Location: ${bank["Location"]}</span><br>
                 <span>Effective Date: ${bank["Effective Date"]}</span><br>
                 <span>Total Assets: ${bank["Total Assets"]}</span><br>
                 <span>Total Deposites: ${bank["Total Deposits"]}</span><br>
                 <span>Estimated Loss: ${bank["Estimated Loss"]}</span><br>
                 <span>Acquirer: ${bank["Acquiring Institution"]}</span>
                 `);
+                
+                thislist.map.markDetailedBank(bank);
             });
 
     }

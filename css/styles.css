@@ -47,7 +47,7 @@
 }
 
 #bank-details {
-    height: 200px;
+    height: 230px;
     border-top: 1px solid #fff;
     margin-bottom: 0;
 }
@@ -65,11 +65,16 @@
 
 .circle {
     r: 2.5;
-    fill: red;
+    fill: gray;
 }
 
 .circle-selected {
-    fill: steelblue;
+    fill: red;
+}
+
+.circle-detailed {
+    fill: blue;
+    r: 4;
 }
 
 .bank-list-text {
