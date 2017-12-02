@@ -4,11 +4,11 @@ class BarChart{
 
         this.banks = banks;
 
-        this.margin = {top: 5, right: 50, bottom: 150, left: 70};
+        this.margin = {top: 10, right: 50, bottom: 130, left: 70};
         let divbarChart = d3.select("#bar-chart");
         let svgBounds = divbarChart.node().getBoundingClientRect();
         this.svgWidth = svgBounds.width;
-        this.svgHeight = 325;
+        this.svgHeight = 345;
         this.barWidth = 20;
         this.barPadding = 5;
         this.barSlotWidth = this.barWidth + 2 * this.barPadding;
@@ -142,6 +142,9 @@ class BarChart{
             .attr("transform", "translate(0, 20) rotate(25)");
 
         let yAxis = d3.axisLeft();
+        if (choosedata != "bank_amounts") {
+            yAxis.tickFormat(d3.formatPrefix(".0", 1e6));
+        }
         yAxis.scale(thistable.yScale);
         d3.select("#baryAxis")
             .attr("transform", "translate("
@@ -150,7 +153,8 @@ class BarChart{
                     + "), scale(1, -1)")
             .call(yAxis)
             .selectAll("text")
-            .attr("transform", "scale(1, -1)");
+            .attr("transform", "scale(1, -1)")
+            .classed("axis-ticks", true);
 
         //create bars
         this.svg.append("g").attr("id","bars").attr("transform","translate(0," + thistable.svgHeight +") scale(1,-1)");

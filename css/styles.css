@@ -20,6 +20,9 @@
     fill-opacity: .25;
 }
 
+.axis-ticks {
+    font-size: 15px;
+}
 
 .bar-chart-text {
     text-anchor: start;

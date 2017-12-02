@@ -17,11 +17,11 @@ class LineChart{
             }
         }
 
-        this.margin = {top: 20, right: 20, bottom: 30, left: 100};
+        this.margin = {top: 10, right: 20, bottom: 30, left: 100};
         let divlineChart = d3.select("#line-chart");
         let svgBounds = divlineChart.node().getBoundingClientRect();
         this.svgwidth = svgBounds.width;// - this.margin.left - this.margin.right;
-        this.svgHeight = 200;
+        this.svgHeight = 250;
 
         this.svg = divlineChart.append("svg")
             .attr("width",this.svgwidth)
@@ -133,7 +133,7 @@ class LineChart{
 
         // Create the axes
         this.svg.html("");
-        let xAxis = d3.axisTop();
+        let xAxis = d3.axisTop().tickFormat(d3.format("d"));
         xAxis.scale(thistable.xScale);
         this.svg.append("g").attr("id","linexAxis");
         this.svg.append("g").attr("id","lineyAxis");
@@ -141,14 +141,18 @@ class LineChart{
             .attr("transform", "translate(0," + (+thistable.svgHeight-this.margin.bottom) + ")")
             .call(xAxis)
             .selectAll("text")
-            .attr("transform", "translate(0,20)");
+            .attr("transform", "translate(0,25)")
+            .classed("axis-ticks", true);
         let yAxis = d3.axisLeft();
+        if (choosedata != "bank_amounts") {
+            yAxis.tickFormat(d3.formatPrefix(".0", 1e6));
+        }
         yAxis.scale(thistable.yScale);
         d3.select("#lineyAxis")
             .attr("transform", "translate(" + thistable.margin.left + ", 0)")
             .call(yAxis)
-            .selectAll("text");
-            //.attr("transform", "scale(1, -1) rotate(180)");
+            .selectAll("text")
+            .classed("axis-ticks", true);
 
         //create lines
         this.svg.append("g").attr("id","lines");
