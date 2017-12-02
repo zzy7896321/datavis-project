@@ -23,21 +23,56 @@
 
 <div class="container">
 <div class="row">
-    <div class="col-xl">
-        <h1>FDIC Failed Banks from Oct 2000 to Dec 2016</h1>
+    <div class="text-center">
+        FDIC Failed Banks From Oct 2000 to Dec 2016
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-xl-8">
+        <h3 class="text-center">Aggregate Statistics of the Failed Banks over the Years</h3>
+    </div>
+    <div class="col-md-4 col-xl-4">
+        <h3 class="text-center">Top Acquirers</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4 col-xl-4 col-md-offset-2 col-xl-offset-2">
+        During Oct 2000 through Dec 2016, over 500 FDIC-insured banks failed
+        in the US, a lot of which happened during the 2008 financial crisis.
+        Thanks to FDIC, no insured funds have ever been lost despite the huge
+        volume of failed banks. The following chart shows the yearly
+        aggregated statistics of the failed banks.
+    </div>
+    <div class="col-md-4 col-xl-4 col-md-offset-2 col-xl-offset-2">
+        Though the most quantity of failed banks were not acquired by
+        any institution and thus were covered by the FDIC during
+        2000-2016, the FDIC is not the largest source of funds to resolve
+        the issue. OneWest Bank, FSB acquired the most banks in terms of
+        estimated loss, while JP Morgan Chase Bank acquired the most banks
+        in terms of total assets or deposits.
+    </div>
+</div>
+
+<div class=row>
+    <div style="margin-bottom: 0px; margin-left: 100px;">
+        <div class="pull-left form-group">
+            <select class="form-control" id="dataset" onchange="changeData()">
+                <option selected value="bank_amounts">bank amounts</option>
+                <option value="Estimated Loss">estimated loss</option>
+                <option value="Total Assets">total assets</option>
+                <option value="Total Deposits">total deposits</option>
+            </select>
+        </div>
+        <div class="pull-left form-groups">
+            <button class="btn btn-primary">Reset</button>         
+        </div>
     </div>
 </div>
 
 <div class="row">
 <div id="line-chart" class="col-md-8 col-xl-8">
-    <div class="pull-left">
-        <select id="dataset" onchange="changeData()">
-            <option selected value="bank_amounts">bank amounts</option>
-            <option value="Estimated Loss">estimated loss</option>
-            <option value="Total Assets">total assets</option>
-            <option value="Total Deposits">total deposits</option>
-        </select>
-    </div>
 </div>
 
 <div id="bar-chart" class="col-md-4 col-xl-4">

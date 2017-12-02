@@ -4,11 +4,11 @@ class BarChart{
 
         this.banks = banks;
 
-        this.margin = {top: 40, right: 50, bottom: 120, left: 70};
+        this.margin = {top: 40, right: 50, bottom: 150, left: 70};
         let divbarChart = d3.select("#bar-chart");
         let svgBounds = divbarChart.node().getBoundingClientRect();
         this.svgWidth = svgBounds.width;
-        this.svgHeight = 310;
+        this.svgHeight = 360;
         this.barWidth = 20;
         this.barPadding = 5;
         this.barSlotWidth = this.barWidth + 2 * this.barPadding;

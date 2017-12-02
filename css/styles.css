@@ -1,13 +1,3 @@
-/*.row-div:before,
-.row-div:after {
-    content: " ";
-    display: table;
-}
-
-.row-div:after {
-    clear: both;
-} */
-
 .lineChart{
     stroke: grey;
     stroke-width: 2;

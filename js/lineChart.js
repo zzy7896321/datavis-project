@@ -36,7 +36,7 @@ class LineChart{
         let thistable = this;
 
         //console.log(choosedata);
-        //console.log(thistable.banks);
+        console.log(thistable.banks);
 
         //aggregation
         let aggrebanks = [];
@@ -99,7 +99,7 @@ class LineChart{
 
         }
         aggrebanks[aggrebanks.length-1].nextval = null;
-        //console.log(aggrebanks);
+        console.log(aggrebanks);
 
         //scale
         this.xScale = d3.scaleLinear()
@@ -168,7 +168,6 @@ class LineChart{
         this.svg.append("g").attr("id","circles");
         d3.select("#circles").html("").selectAll("circle").data(aggrebanks)
             .enter()
-            .filter(d=> d.nextval !== null)
             .append("circle")
             .attr("r",5)
             .attr("cx",function (d) {
