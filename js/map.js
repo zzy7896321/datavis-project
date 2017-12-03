@@ -165,7 +165,7 @@ class Map {
             this.choosedata = choosedata;
         }
 
-        let searchText = this.searchBox.node().value;
+        let searchText = this.searchBox.node().value.toLowerCase();
         
         let brushSelection = this.brushSelection;
         let x1, y1, x2, y2;
