@@ -22,31 +22,34 @@
 <body>
 
 <div class="container">
-<div class="row">
-    <div class="text-center">
-        <h2 style="margin-bottom: 2px;">FDIC Failed Banks From Oct 2000 to Dec 2016</h2>
-    </div>
-</div>
 
-<!--
-<div class="row">
-    <div class="col-md-12 col-xl-12">
-        <h3 class="text-center">Aggregate Statistics of the Failed Banks over the Years</h3>
-    </div>
-</div>
--->
 <div class="row" style="margin-top: 0px;">
-    <div class="col-md-6 col-xl-6 col-md-offset-3 col-xl-offset-3">
+    <div class="col-md-6 col-xl-6 col-md-offset-2 col-xl-offset-2">
+        <div class="text-center">
+            <h2 style="margin-bottom: 2px;">FDIC Failed Banks From Oct 2000 to Dec 2016</h2>
+        </div>
         During Oct 2000 through Dec 2016, over 500 FDIC-insured banks failed
         in the US, a lot of which happened during the 2008 financial crisis.
         Thanks to FDIC, no insured funds have ever been lost despite the huge
         volume of failed banks. The following chart shows the yearly
         aggregated statistics of the failed banks.
     </div>
+
+    <div class="col-md-offset-1 col-xl-offset-1 col-md-3 col-xl-3" style="font-size: 10px;">
+        Data Visualization Fall 17 Course Project<br> 
+        by Ya Gao (u1137971) and Zhuoyue Zhao (u1064756)<br> 
+        The FDIC failed bank data were collected from
+            <a href="https://www5.fdic.gov/hsob/SelectRpt.asp?EntryTyp=30&Header=1">FDIC
+                Failures and Assistance Transactions - Historical Statistics
+                on Banking</a> and
+            <a href="https://www.fdic.gov/bank/individual/failed/banklist.html">Failed Bank List</a>.
+        The US map is derived from the course material and city coordinates were
+        crawled from <a href="https://www.latlong.net/">www.latlong.net</a>.
+    </div>
 </div>
 
 <div class=row>
-    <div style="margin-bottom: 2px;" class="col-md-offset-2 col-xl-offset-2 col-md-8 col-xl-8">
+    <div style="margin-bottom: 2px;" class="col-md-offset-1 col-xl-offset-1 col-md-8 col-xl-8">
         <div class="pull-left form-group" style="margin-left:100px;">
             <select class="form-control" id="dataset" onchange="changeData()">
                 <option selected value="bank_amounts">bank amounts</option>
@@ -62,7 +65,7 @@
 </div>
 
 <div class="row" style="margin-top: 0px; margin-bottom: 0px;">
-<div id="line-chart" class="col-md-offset-2 col-xl-offset-2 col-md-8 col-xl-8">
+<div id="line-chart" class="col-md-offset-1 col-xl-offset-1 col-md-8 col-xl-8">
 </div>
 
 </div>

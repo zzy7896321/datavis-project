@@ -21,7 +21,7 @@ class LineChart{
         let divlineChart = d3.select("#line-chart");
         let svgBounds = divlineChart.node().getBoundingClientRect();
         this.svgwidth = svgBounds.width;// - this.margin.left - this.margin.right;
-        this.svgHeight = 250;
+        this.svgHeight = 220;
 
         this.svg = divlineChart.append("svg")
             .attr("width",this.svgwidth)
@@ -143,11 +143,19 @@ class LineChart{
             .selectAll("text")
             .attr("transform", "translate(0,25)")
             .classed("axis-ticks", true);
+
         let yAxis = d3.axisLeft();
-        if (choosedata != "bank_amounts") {
-            yAxis.tickFormat(d3.formatPrefix(".0", 1e6));
-        }
         yAxis.scale(thistable.yScale);
+        let yScaleTicks = thistable.yScale.ticks();
+        if (yScaleTicks.length >= 2 && yScaleTicks[0] == 0) {
+            if (yScaleTicks[1] < 1000) {
+                yAxis.tickFormat(d3.format("d"));
+            } else if (yScaleTicks[1] < 1000000) {
+                yAxis.tickFormat(d3.formatPrefix(".0", 1e3));
+            } else {
+                yAxis.tickFormat(d3.formatPrefix(".0", 1e6));
+            }
+        }
         d3.select("#lineyAxis")
             .attr("transform", "translate(" + thistable.margin.left + ", 0)")
             .call(yAxis)
