@@ -140,7 +140,12 @@ class BarChart{
         let yScaleTicks = thistable.yScale.ticks();
         if (yScaleTicks.length >= 2 && yScaleTicks[0] == 0) {
             if (yScaleTicks[1] < 1000) {
-                yAxis.tickFormat(d3.format("d"));
+                yAxis.tickFormat(function (x) {
+                    if (Math.floor(x) != x) {
+                        return ;
+                    }
+                    return x;
+                });
             } else if (yScaleTicks[1] < 1000000) {
                 yAxis.tickFormat(d3.formatPrefix(".0", 1e3));
             } else {
