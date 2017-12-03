@@ -96,7 +96,7 @@ class BankList {
 
     set_current_expanded(new_cnt) {
         this.current_expanded = new_cnt;
-        if (this.current_expanded == 0) {
+        if (this.current_expanded < this.total) {
             this.bank_list_expand.text("Expand All")
         } else {
             this.bank_list_expand.text("Collapse All")
